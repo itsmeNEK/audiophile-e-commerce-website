@@ -3,7 +3,7 @@ import LogoSvgIcon from '../common/svg/LogoSvgIcon'
 import Style from './Header.module.scss'
 import Link from 'next/link'
 import { getContentfulCategories } from '@/services/getContentfulCategories'
-import { parsedThumbnailType } from '@/types/categoriesType'
+import { parsedCategoryType } from '@/types/categoriesType'
 import TopNav from './SubComponents/TopNav/TopNav'
 import CartModal from './SubComponents/CartModal/CartModal'
 
@@ -20,7 +20,7 @@ export default async function Header() {
           <Link href='/'>
             <li>Home</li>
           </Link>
-          {categories.map((item: parsedThumbnailType, index: number) => {
+          {categories.map((item: parsedCategoryType, index: number) => {
             return (
               <Link key={index} href={`/categories/${item.slug}`}>
                 <li>{item.title}</li>

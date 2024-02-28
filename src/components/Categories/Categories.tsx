@@ -3,15 +3,15 @@ import Style from './Categories.module.scss'
 import Link from 'next/link'
 import Icon from '@mdi/react'
 import { mdiChevronRight } from '@mdi/js'
-import { parsedThumbnailType } from '@/types/categoriesType'
+import { parsedCategoryType } from '@/types/categoriesType'
 type CategoriesProps = {
-  categories: parsedThumbnailType[]
+  categories: parsedCategoryType[]
 }
 export default function Categories({ categories }: CategoriesProps) {
   return (
     <div className={Style['categories']}>
       <ul className={Style['categories__list']}>
-        {categories.map((item: parsedThumbnailType, index: number) => {
+        {categories.map((item: parsedCategoryType, index: number) => {
           return (
             <li key={index}>
               <Image

@@ -1,17 +1,5 @@
-export type ImageFileType = {
-  fields: {
-    title: string
-    file: {
-      url: string
-    }
-  }
-}
-export type ThumbnailType = {
-  fields: {
-    altText: string
-    imageFile: ImageFileType
-  }
-}
+import { ThumbnailType } from './common/image'
+
 export type CategoryType = {
   title: string
   slug: string
@@ -26,7 +14,7 @@ export type ContentfulCategoryType = {
   }
 }
 
-export type parsedThumbnailType = {
+export type parsedCategoryType = {
   title: string
   slug: string
   thumbnail: {

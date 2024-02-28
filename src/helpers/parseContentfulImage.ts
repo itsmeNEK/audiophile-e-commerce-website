@@ -1,4 +1,4 @@
-import { ThumbnailType } from '@/types/categoriesType'
+import { ThumbnailType } from '@/types/common/image'
 
 export function parseContentfulImage(data: ThumbnailType) {
   const altText: string = data.fields.altText || ''

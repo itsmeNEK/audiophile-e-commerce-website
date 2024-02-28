@@ -35,13 +35,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
           aria-label='Plus Button'
           className={Style['cart-item__quantity__minus-plus-btn']}
         >
-          <Icon
-            aria-hidden
-            path={mdiMinus}
-            title='Cart Icon'
-            size={0.7}
-            color='gray'
-          />
+          <Icon aria-hidden path={mdiMinus} size={0.7} color='gray' />
         </PrimaryButton>
         <span aria-label='Quantity Count'>{cartItem.quantity}</span>
         <PrimaryButton
@@ -49,13 +43,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
           aria-label='Minus Button'
           className={Style['cart-item__quantity__minus-plus-btn']}
         >
-          <Icon
-            aria-hidden
-            path={mdiPlus}
-            title='Cart Icon'
-            size={0.7}
-            color='gray'
-          />
+          <Icon aria-hidden path={mdiPlus} size={0.7} color='gray' />
         </PrimaryButton>
       </div>
     </div>
