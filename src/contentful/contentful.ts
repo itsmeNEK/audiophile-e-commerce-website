@@ -7,14 +7,19 @@ const {
 } = process.env
 export default function contentfulClient() {
   const isPreviewMode = VERCEL_ENV === 'preview'
+  const space_id = CONTENTFUL_SPACE_ID ? CONTENTFUL_SPACE_ID : ''
+  const token = isPreviewMode
+    ? CONTENTFUL_PREVIEW_ACCESS_TOKEN!
+    : CONTENTFUL_ACCESS_TOKEN ?? ''
+  const contentHost = isPreviewMode
+    ? 'preview.contentful.com'
+    : 'cdn.contentful.com'
 
   const params: CreateClientParams & { accessToken: string } = {
-    space: CONTENTFUL_SPACE_ID!,
+    space: space_id,
     environment: 'master',
-    accessToken: isPreviewMode
-      ? CONTENTFUL_PREVIEW_ACCESS_TOKEN!
-      : CONTENTFUL_ACCESS_TOKEN!,
-    host: isPreviewMode ? 'preview.contentful.com' : 'cdn.contentful.com',
+    accessToken: token,
+    host: contentHost,
   }
   const client = createClient(params)
 

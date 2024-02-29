@@ -2,7 +2,7 @@ import { ContentfulCategoryType } from '@/types/categoriesType'
 import contentfulClient from './contentful'
 import { parseThumbnail } from './helpers/parseThumbnail'
 
-export async function parseContentfulCategories() {
+export async function getContentfulCategories() {
   const response =
     await contentfulClient().client.getEntries<ContentfulCategoryType>({
       content_type: 'categories',

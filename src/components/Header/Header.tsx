@@ -5,11 +5,11 @@ import Link from 'next/link'
 import PrimaryButton from '../common/buttons/PrimaryButton'
 import Icon from '@mdi/react'
 import { mdiCartOutline, mdiMenu } from '@mdi/js'
-import { parseContentfulCategories } from '@/contentful/categories'
+import { getContentfulCategories } from '@/contentful/getContentfulCategories'
 import { parsedThumbnailType } from '@/types/categoriesType'
 
 export default async function Header() {
-  const categories = await parseContentfulCategories()
+  const categories = await getContentfulCategories()
   return (
     <nav className={Style['nav']}>
       <div className={`${Style['wrapper']} wrapper`}>
