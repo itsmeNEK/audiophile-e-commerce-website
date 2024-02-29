@@ -5,10 +5,10 @@ import Style from './CartModal.module.scss'
 import { useClickOutside } from '@/hooks/useOnClickOutside'
 import { mdiCartOutline } from '@mdi/js'
 import Icon from '@mdi/react'
-import Overlay from '@/components/common/overlay/overlay'
 import Link from 'next/link'
 import CartItem from '../CartItem/CartItem'
 import { ProductType } from '@/types/productType'
+import Overlay from '@/components/common/overlay/overlay'
 
 const mocCartData = [
   {
