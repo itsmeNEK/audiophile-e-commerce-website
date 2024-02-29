@@ -26,7 +26,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/contentful/contentful.ts"
+    "src/contentful/contentfulClient.ts"
   ],
   "exclude": ["node_modules"]
 }

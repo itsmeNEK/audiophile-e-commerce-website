@@ -1,4 +1,4 @@
-.nav {
+.header {
   height: 5.6rem;
   position: absolute;
   z-index: 1;
@@ -10,9 +10,6 @@
     align-items: center;
     justify-content: space-between;
     border-bottom: 1px solid var(--divider);
-  }
-  &__menu-button {
-    background-color: transparent;
   }
   &__links {
     display: none;
@@ -59,9 +56,6 @@
       li {
         padding: 0rem 1rem;
       }
-    }
-    &__menu-button {
-      display: none;
     }
   }
 }

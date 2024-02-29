@@ -1,6 +1,6 @@
 import { ContentfulCategoryType } from '@/types/categoriesType'
-import contentfulClient from './contentful'
-import { parseThumbnail } from './helpers/parseThumbnail'
+import contentfulClient from '../contentful/contentfulClient'
+import { parseContentfulImage } from '../helpers/parseContentfulImage'
 
 export async function getContentfulCategories() {
   const response =
@@ -12,7 +12,7 @@ export async function getContentfulCategories() {
     return {
       title,
       slug,
-      thumbnail: parseThumbnail(thumbnail),
+      thumbnail: parseContentfulImage(thumbnail),
     }
   })
 }

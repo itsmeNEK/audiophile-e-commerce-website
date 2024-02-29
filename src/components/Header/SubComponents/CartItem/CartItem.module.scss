@@ -1,0 +1,38 @@
+.cart-item {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  &__product {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    &__image {
+      border-radius: 10px;
+    }
+
+    &__details {
+      margin-left: 1rem;
+      h4 {
+        margin: 0rem;
+      }
+      p {
+        margin: 0;
+      }
+    }
+  }
+  &__quantity {
+    width: 90px;
+    background-color: var(--gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 5px;
+    button {
+      display: flex;
+      align-items: center;
+    }
+  }
+}

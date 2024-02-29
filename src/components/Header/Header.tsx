@@ -2,33 +2,21 @@ import React from 'react'
 import LogoSvgIcon from '../common/svg/LogoSvgIcon'
 import Style from './Header.module.scss'
 import Link from 'next/link'
-import PrimaryButton from '../common/buttons/PrimaryButton'
-import Icon from '@mdi/react'
-import { mdiCartOutline, mdiMenu } from '@mdi/js'
-import { getContentfulCategories } from '@/contentful/getContentfulCategories'
+import { getContentfulCategories } from '@/services/getContentfulCategories'
 import { parsedThumbnailType } from '@/types/categoriesType'
+import TopNav from './SubComponents/TopNav/TopNav'
+import CartModal from './SubComponents/CartModal/CartModal'
 
 export default async function Header() {
   const categories = await getContentfulCategories()
   return (
-    <nav className={Style['nav']}>
+    <header className={Style['header']}>
       <div className={`${Style['wrapper']} wrapper`}>
-        <PrimaryButton
-          aria-label='Toggle Menu'
-          className={Style['nav__menu-button']}
-        >
-          <Icon
-            aria-hidden
-            path={mdiMenu}
-            title='Cart Icon'
-            size={1}
-            color='white'
-          />
-        </PrimaryButton>
-        <Link href='/' className={Style['nav__brand']}>
+        <TopNav categories={categories} />
+        <Link href='/' className={Style['header__brand']}>
           <LogoSvgIcon aria-hidden />
         </Link>
-        <ul className={Style['nav__links']}>
+        <ul className={Style['header__links']}>
           <Link href='/'>
             <li>Home</li>
           </Link>
@@ -40,20 +28,8 @@ export default async function Header() {
             )
           })}
         </ul>
-        <PrimaryButton
-          type='button'
-          aria-label='Toggle Cart'
-          className={Style['nav__cart-button']}
-        >
-          <Icon
-            aria-hidden
-            path={mdiCartOutline}
-            title='Cart Icon'
-            size={1}
-            color='white'
-          />
-        </PrimaryButton>
+        <CartModal />
       </div>
-    </nav>
+    </header>
   )
 }
