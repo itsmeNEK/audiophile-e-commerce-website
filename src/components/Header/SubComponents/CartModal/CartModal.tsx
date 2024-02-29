@@ -86,7 +86,9 @@ export default function CartModal() {
         onClick={handleShowCart}
       >
         {cartItems.length > 0 && (
-          <span className={Style['cart-button__count']}>1</span>
+          <span className={Style['cart-button__count']}>
+            {cartItems.length}
+          </span>
         )}
         <Icon
           aria-hidden
