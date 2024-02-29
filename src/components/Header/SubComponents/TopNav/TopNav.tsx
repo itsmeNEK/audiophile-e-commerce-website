@@ -7,7 +7,7 @@ import { mdiClose, mdiMenu } from '@mdi/js'
 import { parsedThumbnailType } from '@/types/categoriesType'
 import { useClickOutside } from '@/hooks/useOnClickOutside'
 import Categories from '@/components/Categories/Categories'
-import Overlay from '@/components/common/overlay/overlay'
+import Overlay from '@/components/common/overlay/Overlay'
 type TopNavProps = {
   categories: parsedThumbnailType[]
 }

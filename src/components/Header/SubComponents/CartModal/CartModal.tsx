@@ -8,7 +8,7 @@ import Icon from '@mdi/react'
 import Link from 'next/link'
 import CartItem from '../CartItem/CartItem'
 import { ProductType } from '@/types/productType'
-import Overlay from '@/components/common/overlay/overlay'
+import Overlay from '@/components/common/overlay/Overlay'
 
 const mocCartData = [
   {
