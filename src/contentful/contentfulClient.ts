@@ -3,7 +3,7 @@ const {
   CONTENTFUL_SPACE_ID,
   CONTENTFUL_ACCESS_TOKEN,
   CONTENTFUL_PREVIEW_ACCESS_TOKEN,
-  ENV,
+  CONTENTFUL_ENV,
   VERCEL_ENV,
 } = process.env
 export default function contentfulClient() {
@@ -11,7 +11,7 @@ export default function contentfulClient() {
 
   const params: CreateClientParams & { accessToken: string } = {
     space: CONTENTFUL_SPACE_ID as string,
-    environment: ENV as string,
+    environment: CONTENTFUL_ENV as string,
     accessToken: (isPreviewMode
       ? CONTENTFUL_PREVIEW_ACCESS_TOKEN
       : CONTENTFUL_ACCESS_TOKEN) as string,
