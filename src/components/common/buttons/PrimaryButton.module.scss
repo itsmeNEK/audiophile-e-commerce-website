@@ -1,0 +1,7 @@
+.primary-button {
+  border: none;
+  -webkit-tap-highlight-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+}

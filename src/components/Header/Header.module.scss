@@ -1,0 +1,61 @@
+.header {
+  height: 5.6rem;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  background-color: var(--black);
+  .wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--divider);
+  }
+  &__links {
+    display: none;
+  }
+  &__cart-button {
+    background-color: transparent;
+    svg {
+      height: 15px;
+      width: 20px;
+      path {
+        fill: var(--white);
+      }
+    }
+  }
+
+  @media screen and (min-width: 40rem) and (max-width: 62rem) {
+    .wrapper {
+      justify-content: left;
+      gap: 3rem;
+    }
+    &__brand {
+      margin-right: auto;
+    }
+  }
+  @media screen and (min-width: 62rem) {
+    &__links {
+      display: flex;
+    }
+    &__links {
+      display: flex;
+      list-style-type: none;
+      a {
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 1px;
+        color: var(--white);
+        transition: color 300ms;
+        &:hover {
+          color: var(--accent);
+        }
+      }
+      li {
+        padding: 0rem 1rem;
+      }
+    }
+  }
+}

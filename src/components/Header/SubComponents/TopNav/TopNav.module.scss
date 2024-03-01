@@ -1,0 +1,27 @@
+.top-nav {
+  &__menu-button {
+    background-color: transparent;
+  }
+  &__container {
+    transform: translateY(-210%);
+    transition: transform 0.3s ease;
+    position: fixed;
+    top: 5rem;
+    left: 0;
+    z-index: 1;
+    width: 100vw;
+    background-color: var(--white);
+    padding: 0 1rem;
+
+    &.menu-open {
+      transform: translateY(0);
+    }
+
+    .close-button {
+      padding: 30px 0 0 40px;
+    }
+  }
+  @media screen and (min-width: 62rem) {
+    display: none;
+  }
+}
