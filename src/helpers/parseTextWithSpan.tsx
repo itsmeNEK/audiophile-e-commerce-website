@@ -1,10 +1,11 @@
-function parseTextWithSpan(title: string) {
-  const parts = title.split(/\'([^']+)\'/g)
+function parseTextWithSpan(title: string, emphasis?: string) {
+  if (!emphasis) return title
+  const parts = title.split(new RegExp(`(${emphasis})`, 'gi'))
   const parsedTitle = parts.map((part, index) => {
-    if (index % 2 === 0) {
-      return part
-    } else {
+    if (part.toLowerCase() === emphasis.toLowerCase()) {
       return <span key={index}>{part}</span>
+    } else {
+      return part
     }
   })
 

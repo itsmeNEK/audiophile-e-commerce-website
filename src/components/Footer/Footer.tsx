@@ -1,10 +1,12 @@
-import MainFooter from './SubComponents/MainFooter/MainFooter'
-import PromotionBanner from './SubComponents/PromotionBanner/PromotionBanner'
+import { getContentfulPromotion } from '@/services/getContentfulPromotion'
+import MainFooter from './MainFooter/MainFooter'
+import Banner from '../Banner/Banner'
 
-export default function Footer() {
+export default async function Footer() {
+  const promotionBanner = await getContentfulPromotion()
   return (
     <>
-      <PromotionBanner />
+      {promotionBanner && <Banner data={promotionBanner} />}
       <MainFooter />
     </>
   )

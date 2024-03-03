@@ -1,12 +1,14 @@
 import Link from 'next/link'
 import Style from './MainFooter.module.scss'
 import LogoSvgIcon from '@/components/common/svg/LogoSvgIcon'
-import { parsedCategoryType } from '@/types/categoriesType'
-import { getContentfulCategories } from '@/services/getContentfulCategories'
 import Icon from '@mdi/react'
 import { mdiFacebook, mdiInstagram, mdiTwitter } from '@mdi/js'
+import { getContentfulNavigationCategories } from '@/services/getContentfulNavigationCategories'
+import { getContentfulFooter } from '@/services/getContentfulFooter'
+import NavLinks from '@/components/NavLinks/NavLinks'
 export default async function MainFooter() {
-  const categories = await getContentfulCategories()
+  const { navigation } = await getContentfulNavigationCategories()
+  const footerContent = await getContentfulFooter()
   return (
     <footer className={Style['footer']}>
       <div className={`${Style['wrapper']} wrapper`}>
@@ -14,28 +16,14 @@ export default async function MainFooter() {
           <Link href='/' className={Style['footer__navigation__brand']}>
             <LogoSvgIcon aria-hidden />
           </Link>
-          <ul className={Style['footer__navigation__links']}>
-            <Link href='/'>
-              <li>Home</li>
-            </Link>
-            {categories.map((item: parsedCategoryType, index: number) => {
-              return (
-                <Link key={index} href={`/categories/${item.slug}`}>
-                  <li>{item.title}</li>
-                </Link>
-              )
-            })}
-          </ul>
+          <NavLinks navigation={navigation} />
         </div>
         <div className={Style['footer__info']}>
           <p className={Style['footer__info__details']}>
-            {`Audiophile is an all in one stop to fulfill your audio needs. We're a
-          small team of music lovers and sound specialists who are devoted to
-          helping you get the most out of personal audio. Come and visit our
-          demo facility - we’re open 7 days a week.`}
+            {footerContent?.about}
           </p>
           <div className={Style['footer__info__copyright']}>
-            Copyright 2021. All Rights Reserved
+            {footerContent?.copyright}
           </div>
           <div className={Style['footer__info__social']}>
             <Link href='/'>

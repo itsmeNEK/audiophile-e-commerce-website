@@ -1,14 +1,16 @@
-export type ImageFileType = {
-  fields: {
-    title: string
-    file: {
-      url: string
+export type ThumbnailType = {
+  url: string
+  public_id: string
+  context: {
+    custom: {
+      alt: string
+      caption: string
     }
   }
 }
-export type ThumbnailType = {
-  fields: {
-    altText: string
-    imageFile: ImageFileType
-  }
+
+export type ParsedImage = {
+  altText: string
+  public_id?: string
+  imageUrl: string
 }

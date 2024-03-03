@@ -4,10 +4,10 @@ export type ContentfulPromotionType = {
   contentTypeId: string
   fields: {
     title: string
-    slug: string
+    emphasis: string
+    tag: string
     description: string
+    bannerType: string
     thumbnail: ThumbnailType
-    thumbnailTablet: ThumbnailType
-    thumbnailDesktop: ThumbnailType
   }
 }

@@ -2,13 +2,13 @@ import React from 'react'
 import LogoSvgIcon from '../common/svg/LogoSvgIcon'
 import Style from './Header.module.scss'
 import Link from 'next/link'
-import { getContentfulCategories } from '@/services/getContentfulCategories'
-import { parsedCategoryType } from '@/types/categoriesType'
 import TopNav from './SubComponents/TopNav/TopNav'
 import CartModal from './SubComponents/CartModal/CartModal'
+import { getContentfulNavigationCategories } from '@/services/getContentfulNavigationCategories'
+import NavLinks from '../NavLinks/NavLinks'
 
 export default async function Header() {
-  const categories = await getContentfulCategories()
+  const { navigation, categories } = await getContentfulNavigationCategories()
   return (
     <header className={Style['header']}>
       <div className={`${Style['wrapper']} wrapper`}>
@@ -16,18 +16,10 @@ export default async function Header() {
         <Link href='/' className={Style['header__brand']}>
           <LogoSvgIcon aria-hidden />
         </Link>
-        <ul className={Style['header__links']}>
-          <Link href='/'>
-            <li>Home</li>
-          </Link>
-          {categories.map((item: parsedCategoryType, index: number) => {
-            return (
-              <Link key={index} href={`/categories/${item.slug}`}>
-                <li>{item.title}</li>
-              </Link>
-            )
-          })}
-        </ul>
+        <NavLinks
+          navigation={navigation}
+          className={Style['header__nav-links']}
+        />
         <CartModal />
       </div>
     </header>

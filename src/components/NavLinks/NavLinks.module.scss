@@ -1,0 +1,37 @@
+.navigation__links {
+  margin-top: 2rem;
+  margin-bottom: 0;
+  list-style: none;
+  padding-left: 0;
+  li {
+    padding: 0.5rem 0;
+  }
+  a {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--white);
+  }
+  @media screen and (min-width: 40rem) {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-top: 0;
+    a {
+      transition: color 300ms;
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+  @media screen and (min-width: 62rem) {
+    a {
+      transition: color 300ms;
+      &:hover {
+        color: var(--accent);
+      }
+    }
+  }
+}
