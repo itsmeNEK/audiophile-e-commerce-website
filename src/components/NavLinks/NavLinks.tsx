@@ -10,12 +10,11 @@ interface NavLinksProps {
 function NavLinks({ navigation, className }: NavLinksProps) {
   return (
     <ul className={`${Style['navigation__links']} ${className}`}>
-      {navigation &&
-        navigation.map((item: NavigationType, index: number) => (
-          <Link key={index} href={item.link}>
-            <li>{item.title}</li>
-          </Link>
-        ))}
+      {navigation?.map((item, index) => (
+        <Link key={index} href={item.link}>
+          <li>{item.title}</li>
+        </Link>
+      ))}
     </ul>
   )
 }

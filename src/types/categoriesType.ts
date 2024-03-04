@@ -8,7 +8,6 @@ export type ContentfulCategoryType = {
 export type NavigationType = {
   title: string
   link: string
-  category: boolean
 }
 export type parsedCategoryType = {
   title: string
