@@ -1,36 +1,17 @@
-export type ImageFileType = {
-  fields: {
-    title: string
-    file: {
-      url: string
-    }
-  }
-}
-export type ThumbnailType = {
-  fields: {
-    altText: string
-    imageFile: ImageFileType
-  }
-}
-export type CategoryType = {
-  title: string
-  slug: string
-  thumbnail: ThumbnailType
-}
+import { ParsedImage } from './common/image'
+
 export type ContentfulCategoryType = {
   contentTypeId: string
-  fields: {
-    title: string
-    slug: string
-    thumbnail: CategoryType
-  }
+  fields: parsedCategoryType
 }
 
-export type parsedThumbnailType = {
+export type NavigationType = {
   title: string
-  slug: string
-  thumbnail: {
-    altText: string
-    imageUrl: string
-  }
+  link: string
+}
+export type parsedCategoryType = {
+  title: string
+  link: string
+  category: boolean
+  thumbnail: ParsedImage
 }

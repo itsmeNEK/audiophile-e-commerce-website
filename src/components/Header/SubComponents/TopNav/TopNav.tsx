@@ -4,14 +4,15 @@ import Style from './TopNav.module.scss'
 import PrimaryButton from '@/components/common/buttons/PrimaryButton'
 import Icon from '@mdi/react'
 import { mdiClose, mdiMenu } from '@mdi/js'
-import { parsedThumbnailType } from '@/types/categoriesType'
 import { useClickOutside } from '@/hooks/useOnClickOutside'
 import Categories from '@/components/Categories/Categories'
 import Overlay from '@/components/common/overlay/Overlay'
-type TopNavProps = {
-  categories: parsedThumbnailType[]
+import { parsedCategoryType } from '@/types/categoriesType'
+
+type CategoriesProps = {
+  categories: parsedCategoryType[]
 }
-const TopNav = ({ categories }: TopNavProps) => {
+export default function TopNav({ categories }: CategoriesProps) {
   const [showTopNav, setShowTopNav] = useState(false)
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
   const topNavRef = useRef<HTMLDivElement>(null)
@@ -35,7 +36,6 @@ const TopNav = ({ categories }: TopNavProps) => {
         <Icon
           aria-hidden
           path={!showTopNav ? mdiMenu : mdiClose}
-          title={`${!showTopNav ? 'Menu Icon' : 'Close Icon'}`}
           size={1}
           color='white'
         />
@@ -50,5 +50,3 @@ const TopNav = ({ categories }: TopNavProps) => {
     </nav>
   )
 }
-
-export default TopNav

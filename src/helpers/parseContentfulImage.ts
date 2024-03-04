@@ -1,9 +1,8 @@
-import { ThumbnailType } from '@/types/categoriesType'
+import { ThumbnailType } from '@/types/common/image'
 
 export function parseContentfulImage(data: ThumbnailType) {
-  const altText: string = data.fields.altText || ''
-  const imageUrl: string =
-    'https:' + data.fields.imageFile.fields.file.url || ''
-
-  return { altText, imageUrl }
+  const imageUrl: string = data.secure_url
+  const imagePublicId: string = data.public_id
+  const altText: string = data.context.custom.alt
+  return { altText, imageUrl, imagePublicId }
 }

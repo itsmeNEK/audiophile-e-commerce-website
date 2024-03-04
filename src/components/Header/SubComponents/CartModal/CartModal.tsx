@@ -50,13 +50,7 @@ export default function CartModal() {
     <div className={Style['cart-modal__container__body']}>
       <span>Your cart is empty.</span>
       <p>
-        <Icon
-          aria-hidden
-          path={mdiCartOutline}
-          title='Cart Icon'
-          size={5}
-          color='black'
-        />
+        <Icon aria-hidden path={mdiCartOutline} size={5} color='black' />
       </p>
     </div>
   )
@@ -90,13 +84,7 @@ export default function CartModal() {
             {cartItems.length}
           </span>
         )}
-        <Icon
-          aria-hidden
-          path={mdiCartOutline}
-          title='Cart Icon'
-          size={1}
-          color='white'
-        />
+        <Icon aria-hidden path={mdiCartOutline} size={1} color='white' />
       </PrimaryButton>
       {showCart && (
         <>

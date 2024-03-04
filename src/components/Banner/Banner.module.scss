@@ -1,0 +1,76 @@
+.banner {
+  position: relative;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+
+  &__image-container {
+    width: 100%;
+    margin-bottom: 1rem;
+    &__image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  &__content {
+    h2 {
+      font-size: 2rem;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      margin-top: 0rem;
+
+      span {
+        color: var(--accent);
+      }
+    }
+    p {
+      font-size: 1rem;
+      font-weight: 200;
+      line-height: 30px;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 40rem) and (max-width: 62rem) {
+  .banner {
+    &__content {
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 62rem) {
+  .banner {
+    &__content {
+      h2 {
+        font-size: 2.5rem;
+      }
+    }
+  }
+  .banner-promotion {
+    gap: 10%;
+    &__image-container {
+      width: 40%;
+      &__image {
+        height: 500px;
+      }
+    }
+    flex-direction: row-reverse;
+    &__content {
+      width: 50%;
+      text-align: start;
+    }
+  }
+}
