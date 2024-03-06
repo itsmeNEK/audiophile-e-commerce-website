@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import './globals.scss'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
+import { Suspense } from 'react'
+import Loading from './loading'
 
 export const metadata: Metadata = {
   title: 'Audiophile',
@@ -17,7 +19,7 @@ export default function RootLayout({
     <html lang='en'>
       <body>
         <Header />
-        {children}
+        <Suspense fallback={<Loading />}>{children}</Suspense>
         <Footer />
       </body>
     </html>

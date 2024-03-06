@@ -26,7 +26,7 @@ export default async function Home() {
     <main>
       {heroBanner && <Banner data={heroBanner} />}
       <div className='wrapper'>
-        <Categories categories={categories} />
+        {categories && <Categories categories={categories} />}
       </div>
       {featuredBanner && <Banner data={featuredBanner} />}
       {backgroundBanner && <Banner data={backgroundBanner} />}

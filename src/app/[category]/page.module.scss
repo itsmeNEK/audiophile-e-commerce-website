@@ -1,0 +1,35 @@
+.container-not-found {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.category-banner {
+  height: 80px;
+  background-color: var(--black);
+  color: var(--white);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5rem;
+  h1 {
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 1.5rem;
+  }
+  @media screen and (min-width: 40rem) {
+    height: 150px;
+  }
+  @media screen and (min-width: 62rem) {
+    height: 250px;
+    margin-bottom: 7rem;
+    h1 {
+      font-size: 2rem;
+    }
+  }
+}
+.products {
+  margin-bottom: 10rem;
+}

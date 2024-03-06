@@ -15,16 +15,16 @@ export default function Categories({ categories }: CategoriesProps) {
       <ul className={Style['categories__list']}>
         {categories?.map((item, index) => {
           const { thumbnail, title, link } = item
-          const imageData = parseContentfulImage(thumbnail[0])
+          const parsedThumbnail = parseContentfulImage(thumbnail[0])
           return (
             <li key={index}>
               <Image
                 priority
                 className={Style['categories__image']}
-                src={imageData.imageUrl}
-                alt={imageData.altText}
-                width={200}
-                height={170}
+                src={parsedThumbnail.imageUrl}
+                alt={parsedThumbnail.altText}
+                width={parsedThumbnail.width}
+                height={parsedThumbnail.height}
                 quality={100}
               />
               <h2 className={Style['categories__title']}>{title}</h2>
