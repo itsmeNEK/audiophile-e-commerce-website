@@ -11,10 +11,14 @@ const httpLink = createHttpLink({
 })
 
 const authLink = setContext((_, { headers }) => {
+  const TOKEN =
+    process.env.VERCEL_ENV === 'preview'
+      ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
+      : process.env.CONTENTFUL_ACCESS_TOKEN
   return {
     headers: {
       ...headers,
-      Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${TOKEN}`,
     },
   }
 })

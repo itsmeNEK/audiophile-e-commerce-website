@@ -7,9 +7,7 @@ import NavLinks from '@/components/NavLinks/NavLinks'
 import getFooterContent from '@/services/getFooterContent'
 import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 export default async function MainFooter() {
-  const navigation = await getCategoriesNavigation({
-    isCategory: true,
-  })
+  const navigation = await getCategoriesNavigation()
   const footerContent = await getFooterContent()
 
   return (
