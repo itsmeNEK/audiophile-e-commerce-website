@@ -1,5 +1,5 @@
-function parseTextWithSpan(title: string, emphasis?: string) {
-  if (!emphasis) return title
+function parseTextWithSpan(title?: string | null, emphasis?: string | null) {
+  if (!title || !emphasis) return title
   const parts = title.split(new RegExp(`(${emphasis})`, 'gi'))
   const parsedTitle = parts.map((part, index) => {
     if (part.toLowerCase() === emphasis.toLowerCase()) {

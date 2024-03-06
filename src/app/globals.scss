@@ -21,6 +21,7 @@ body {
   margin: 0;
   font-family: 'Manrope', sans-serif;
   background-color: var(--bg);
+  overflow: auto;
 
   @media screen and (min-width: 765px) {
   }

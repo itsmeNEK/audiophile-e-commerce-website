@@ -1,9 +1,12 @@
-import { getContentfulPromotion } from '@/services/getContentfulPromotion'
 import MainFooter from './MainFooter/MainFooter'
 import Banner from '../Banner/Banner'
+import getBanner from '@/services/getBanner'
 
 export default async function Footer() {
-  const promotionBanner = await getContentfulPromotion()
+  const promotionBanner = await getBanner({
+    pageQ: 'promotion',
+    bannerTypeQ: 'promotion',
+  })
   return (
     <>
       {promotionBanner && <Banner data={promotionBanner} />}

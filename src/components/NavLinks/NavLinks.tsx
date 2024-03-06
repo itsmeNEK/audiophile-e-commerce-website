@@ -4,12 +4,11 @@ import Style from './NavLinks.module.scss'
 
 interface NavLinksProps {
   navigation: NavigationType[]
-  className?: string
 }
 
-function NavLinks({ navigation, className }: NavLinksProps) {
+function NavLinks({ navigation }: NavLinksProps) {
   return (
-    <ul className={`${Style['navigation__links']} ${className}`}>
+    <ul className={`${Style['navigation__links']}`}>
       {navigation?.map((item, index) => (
         <Link key={index} href={item.link}>
           <li>{item.title}</li>

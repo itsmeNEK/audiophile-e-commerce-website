@@ -3,12 +3,15 @@ import Style from './MainFooter.module.scss'
 import LogoSvgIcon from '@/components/common/svg/LogoSvgIcon'
 import Icon from '@mdi/react'
 import { mdiFacebook, mdiInstagram, mdiTwitter } from '@mdi/js'
-import { getContentfulNavigationCategories } from '@/services/getContentfulNavigationCategories'
-import { getContentfulFooter } from '@/services/getContentfulFooter'
 import NavLinks from '@/components/NavLinks/NavLinks'
+import getFooterContent from '@/services/getFooterContent'
+import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 export default async function MainFooter() {
-  const { navigation } = await getContentfulNavigationCategories()
-  const footerContent = await getContentfulFooter()
+  const navigation = await getCategoriesNavigation({
+    isCategory: true,
+  })
+  const footerContent = await getFooterContent()
+
   return (
     <footer className={Style['footer']}>
       <div className={`${Style['wrapper']} wrapper`}>

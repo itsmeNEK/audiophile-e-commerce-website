@@ -5,7 +5,7 @@
   &__container {
     transform: translateY(-210%);
     transition: transform 0.3s ease;
-    position: fixed;
+    position: absolute;
     top: 5rem;
     left: 0;
     z-index: 1;

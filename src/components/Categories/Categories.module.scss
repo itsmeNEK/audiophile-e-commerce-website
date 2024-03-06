@@ -7,7 +7,6 @@
     padding: 0;
     li {
       background-color: var(--gray);
-      margin: 0.4rem;
       margin-bottom: 5rem;
       border-radius: 10px;
       height: 10.5rem;
@@ -49,6 +48,7 @@
 
   @media screen and (min-width: 40rem) {
     &__list {
+      gap: 1rem;
       display: flex;
       li {
         width: 100%;
@@ -58,6 +58,7 @@
   @media screen and (min-width: 62rem) {
     margin-top: 13rem;
     &__list {
+      gap: 1rem;
       display: flex;
       li {
         width: 100%;
