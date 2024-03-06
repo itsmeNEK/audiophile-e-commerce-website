@@ -7,36 +7,16 @@ import { mdiCartOutline } from '@mdi/js'
 import Icon from '@mdi/react'
 import Link from 'next/link'
 import CartItem from '../CartItem/CartItem'
-import { ProductType } from '@/types/productType'
 import Overlay from '@/components/common/overlay/Overlay'
+import { useCartContext } from '@/context/CartContext'
+import { CartItemType } from '@/types/cartType'
 
-const mocCartData = [
-  {
-    image: {
-      file: '/image-yx1-earphones.jpg',
-      alt: 'A Black Earphones',
-    },
-    id: 1,
-    price: 599,
-    quantity: 4,
-    title: 'YX1',
-  },
-  {
-    image: {
-      file: '/image-yx1-earphones.jpg',
-      alt: 'A Black Earphones',
-    },
-    id: 2,
-    price: 599,
-    quantity: 2,
-    title: 'YX1',
-  },
-]
 export default function CartModal() {
+  const { cartItems } = useCartContext()
   const [showCart, setShowCart] = useState(false)
-  const [cartItems] = useState(mocCartData)
   const cartCardRef = useRef<HTMLDivElement>(null)
   const cartButtonRef = useRef<HTMLButtonElement | null>(null)
+  const { handleRemoveAllItems, totalCartPrice } = useCartContext()
 
   const handleShowCart = () => {
     setShowCart(!showCart)
@@ -45,9 +25,14 @@ export default function CartModal() {
   const handleClickOutside = () => {
     setShowCart(false)
   }
+
+  const handleRemoveAll = () => {
+    handleRemoveAllItems()
+  }
+
   useClickOutside([cartCardRef, cartButtonRef], handleClickOutside)
   const renderEmptyCart = (
-    <div className={Style['cart-modal__container__body']}>
+    <div className={Style['cart-modal__container__body-empty']}>
       <span>Your cart is empty.</span>
       <p>
         <Icon aria-hidden path={mdiCartOutline} size={5} color='black' />
@@ -58,14 +43,22 @@ export default function CartModal() {
     <div>
       <div className={Style['cart-header']}>
         <h3>Cart ({cartItems.length})</h3>
-        <PrimaryButton type='button' className={Style['cart-header__button']}>
+        <PrimaryButton
+          type='button'
+          onClick={handleRemoveAll}
+          className={Style['cart-header__button']}
+        >
           Remove all
         </PrimaryButton>
       </div>
-      {cartItems.map((cartItem: ProductType, index: number) => (
+      {cartItems?.map((cartItem: CartItemType, index: number) => (
         <CartItem key={index} cartItem={cartItem} />
       ))}
-      <Link href='checkout' className={Style['cart-footer']}>
+      <div className={Style['cart-total']}>
+        <span>Total</span>
+        <p>$ {totalCartPrice.toLocaleString()}</p>
+      </div>
+      <Link href='/checkout' className={Style['cart-footer']}>
         Checkout
       </Link>
     </div>

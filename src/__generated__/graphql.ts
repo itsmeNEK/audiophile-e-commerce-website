@@ -1197,11 +1197,35 @@ export type GetProductsByCategoryQuery = {
                 description?: string | null
                 tag?: string | null
                 slug?: string | null
+                sys: { __typename?: 'Sys'; publishedAt?: any | null }
               }
             | null
           >
         } | null
       } | null
+    } | null>
+  } | null
+}
+
+export type GetRecommendProductsQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type GetRecommendProductsQuery = {
+  __typename?: 'Query'
+  productsCollection?: {
+    __typename?: 'ProductsCollection'
+    items: Array<{
+      __typename?: 'Products'
+      title?: string | null
+      slug?: string | null
+      thumbnail?: any | null
+      category?:
+        | { __typename?: 'BannerContent' }
+        | { __typename?: 'Categories'; slug?: string | null }
+        | { __typename?: 'FooterContent' }
+        | { __typename?: 'Products' }
+        | null
     } | null>
   } | null
 }
@@ -1706,6 +1730,25 @@ export const GetProductsByCategoryDocument = {
                                                   value: 'slug',
                                                 },
                                               },
+                                              {
+                                                kind: 'Field',
+                                                name: {
+                                                  kind: 'Name',
+                                                  value: 'sys',
+                                                },
+                                                selectionSet: {
+                                                  kind: 'SelectionSet',
+                                                  selections: [
+                                                    {
+                                                      kind: 'Field',
+                                                      name: {
+                                                        kind: 'Name',
+                                                        value: 'publishedAt',
+                                                      },
+                                                    },
+                                                  ],
+                                                },
+                                              },
                                             ],
                                           },
                                         },
@@ -1731,5 +1774,109 @@ export const GetProductsByCategoryDocument = {
 } as unknown as DocumentNode<
   GetProductsByCategoryQuery,
   GetProductsByCategoryQueryVariables
+>
+export const GetRecommendProductsDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'getRecommendProducts' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'productsCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'slug_not' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'slug' },
+                      },
+                    },
+                  ],
+                },
+              },
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'limit' },
+                value: { kind: 'IntValue', value: '3' },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'thumbnail' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'category' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'InlineFragment',
+                              typeCondition: {
+                                kind: 'NamedType',
+                                name: { kind: 'Name', value: 'Categories' },
+                              },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'slug' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetRecommendProductsQuery,
+  GetRecommendProductsQueryVariables
 >
 /** All built-in and custom scalars, mapped to their actual values */

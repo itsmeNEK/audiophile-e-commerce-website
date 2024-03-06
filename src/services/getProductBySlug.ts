@@ -1,4 +1,3 @@
-import { GetProductsByCategoryQuery } from '@/__generated__/graphql'
 import executeApolloQuery from '@/apollo/ApolloClient'
 import { gql } from '@apollo/client'
 
@@ -26,10 +25,9 @@ async function getProductBySlug(slug: string) {
     query: QUERY_CAT,
     variables: { slug: slug },
   }
-  const data: GetProductsByCategoryQuery =
-    await executeApolloQuery(queryOptions)
+  const data = await executeApolloQuery(queryOptions)
 
-  return data?.categoriesCollection?.items[0]
+  return data?.productsCollection?.items[0]
 }
 
 export default getProductBySlug

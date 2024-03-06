@@ -6,8 +6,10 @@ export type NavigationType = {
 }
 
 export type CategoryType = {
+  __typename: string
   title: string
   link: string
+  slug: string
   category: boolean
   thumbnail: ThumbnailType[]
 }

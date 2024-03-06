@@ -4,7 +4,7 @@ import getProductsByCategory from '@/services/getProductsByCategory'
 import Style from './page.module.scss'
 import ProductBanner from '@/components/ProductBanner/ProductBanner'
 import getCategoriesNavigation from '@/services/getCategoriesNavigation'
-import Categories from '@/components/Categories/Categories'
+import Categories from '@/components/Shared/Categories/Categories'
 
 type CategoryParamsType = {
   params: {

@@ -4,7 +4,7 @@ import Style from './Header.module.scss'
 import Link from 'next/link'
 import TopNav from './SubComponents/TopNav/TopNav'
 import CartModal from './SubComponents/CartModal/CartModal'
-import NavLinks from '../NavLinks/NavLinks'
+import NavLinks from '../Shared/NavLinks/NavLinks'
 import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 
 export default async function Header() {

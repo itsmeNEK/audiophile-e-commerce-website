@@ -1,0 +1,17 @@
+.container-not-found {
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+.back-button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1rem 0;
+
+  @media screen and (min-width: 40rem) {
+    margin: 3rem 0;
+  }
+}

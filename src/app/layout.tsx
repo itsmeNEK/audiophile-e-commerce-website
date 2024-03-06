@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import './globals.scss'
 import Header from '@/components/Header/Header'
 import Footer from '@/components/Footer/Footer'
+import { CartContextProvider } from '@/context/CartContext'
+
 export const metadata: Metadata = {
   title: 'Audiophile',
   description: 'Audiophile multi-page e-commerce website',
@@ -15,9 +17,11 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <CartContextProvider>
+          <Header />
+          {children}
+          <Footer />
+        </CartContextProvider>
       </body>
     </html>
   )
