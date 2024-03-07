@@ -34,8 +34,8 @@ function Banner({ data }: BannerPros) {
             `}
             src={ParsedThumbnail.imageUrl}
             alt={ParsedThumbnail.altText}
-            width={ParsedThumbnail.width}
-            height={ParsedThumbnail.height}
+            width={600}
+            height={300}
             quality={100}
           />
         </div>
