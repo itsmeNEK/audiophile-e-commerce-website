@@ -1,7 +1,5 @@
 export type ThumbnailType = {
   secure_url: string
-  height: number
-  width: number
   public_id: string
   context: {
     custom: {
