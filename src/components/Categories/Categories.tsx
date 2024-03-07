@@ -23,8 +23,9 @@ export default function Categories({ categories }: CategoriesProps) {
                 className={Style['categories__image']}
                 src={imageData.imageUrl}
                 alt={imageData.altText}
-                width={200}
-                height={170}
+                width={imageData.width}
+                height={imageData.height}
+                quality={100}
               />
               <h2 className={Style['categories__title']}>{title}</h2>
               <div className={Style['categories__action']}>

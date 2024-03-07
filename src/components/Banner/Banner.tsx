@@ -36,6 +36,7 @@ function Banner({ data }: BannerPros) {
             alt={ParsedThumbnail.altText}
             width={ParsedThumbnail.width}
             height={ParsedThumbnail.height}
+            quality={100}
           />
         </div>
         <div
