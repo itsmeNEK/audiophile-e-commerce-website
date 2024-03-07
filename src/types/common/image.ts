@@ -13,6 +13,4 @@ export type ParsedImage = {
   altText: string
   public_id?: string
   imageUrl: string
-  width: number
-  height: number
 }
