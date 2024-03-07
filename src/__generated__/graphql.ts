@@ -1050,8 +1050,8 @@ export type _Node = {
 }
 
 export type GetBannerQueryVariables = Exact<{
-  pageQ: Scalars['String']['input']
-  bannerTypeQ: Scalars['String']['input']
+  page: Scalars['String']['input']
+  bannerType: Scalars['String']['input']
 }>
 
 export type GetBannerQuery = {

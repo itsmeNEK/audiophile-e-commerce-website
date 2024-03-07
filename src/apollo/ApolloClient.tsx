@@ -6,15 +6,23 @@ import {
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
 
+const {
+  CONTENTFUL_SPACE_ID,
+  CONTENTFUL_ACCESS_TOKEN,
+  CONTENTFUL_PREVIEW_ACCESS_TOKEN,
+  CONTENTFUL_ENVIRONMENT,
+  VERCEL_ENV,
+} = process.env
+
 const httpLink = createHttpLink({
-  uri: `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master`,
+  uri: `https://graphql.contentful.com/content/v1/spaces/${CONTENTFUL_SPACE_ID}/environments/${CONTENTFUL_ENVIRONMENT}`,
 })
 
 const authLink = setContext((_, { headers }) => {
   const TOKEN =
-    process.env.VERCEL_ENV === 'preview'
-      ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN
-      : process.env.CONTENTFUL_ACCESS_TOKEN
+    VERCEL_ENV === 'preview'
+      ? CONTENTFUL_PREVIEW_ACCESS_TOKEN
+      : CONTENTFUL_ACCESS_TOKEN
   return {
     headers: {
       ...headers,

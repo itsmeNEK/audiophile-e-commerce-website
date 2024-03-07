@@ -4,8 +4,8 @@ import getBanner from '@/services/getBanner'
 
 export default async function Footer() {
   const promotionBanner = await getBanner({
-    pageQ: 'promotion',
-    bannerTypeQ: 'promotion',
+    page: 'promotion',
+    bannerType: 'promotion',
   })
   return (
     <>

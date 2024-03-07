@@ -5,20 +5,20 @@ import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 
 export default async function Home() {
   const hero_banner = await getBanner({
-    pageQ: 'homepage',
-    bannerTypeQ: 'hero',
+    page: 'homepage',
+    bannerType: 'hero',
   })
   const featured_banner = await getBanner({
-    pageQ: 'homepage',
-    bannerTypeQ: 'featured',
+    page: 'homepage',
+    bannerType: 'featured',
   })
-  const secondary_banner = await getBanner({
-    pageQ: 'homepage',
-    bannerTypeQ: 'background',
+  const background_banner = await getBanner({
+    page: 'homepage',
+    bannerType: 'background',
   })
   const card_banner = await getBanner({
-    pageQ: 'homepage',
-    bannerTypeQ: 'card',
+    page: 'homepage',
+    bannerType: 'card',
   })
   const categories = await getCategoriesNavigation({ isCategory: true })
 
@@ -29,7 +29,7 @@ export default async function Home() {
         <Categories categories={categories} />
       </div>
       {featured_banner && <Banner data={featured_banner} />}
-      {secondary_banner && <Banner data={secondary_banner} />}
+      {background_banner && <Banner data={background_banner} />}
       {card_banner && <Banner data={card_banner} />}
     </main>
   )
