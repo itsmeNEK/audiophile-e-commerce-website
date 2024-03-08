@@ -44,7 +44,7 @@ async function executeApolloQuery(queryOptions: QueryOptions) {
     const { data } = await apolloClient.query(queryOptions)
 
     return data
-  } catch (error) {
+  } catch (error: unknown) {
     console.error('Error fetching data:', error)
     throw new Error('Error fetching data')
   }
