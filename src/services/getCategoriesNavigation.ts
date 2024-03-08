@@ -20,7 +20,7 @@ async function getCategoriesNavigation(
 ) {
   const queryOptions = {
     query: QUERY_CAT,
-    variables: isCategory ? { isCategory: true } : undefined,
+    ...(isCategory && { variables: { isCategory: true } }),
   }
   const data = await executeApolloQuery(queryOptions)
 
