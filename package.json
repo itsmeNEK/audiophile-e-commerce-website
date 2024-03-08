@@ -10,31 +10,41 @@
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
     "lint-staged": "lint-staged",
-    "prepare": "husky"
+    "prepare": "husky",
+    "compile": "graphql-codegen",
+    "watch": "graphql-codegen -w"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-staged"
+      "pre-commit": "pnpm run lint-staged"
     }
   },
   "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "npx eslint --fix",
-    "*.{js,jsx,ts,tsx,css,md}": "npx prettier --write"
+    "*.{js,jsx,ts,tsx}": "pnpx eslint --fix",
+    "*.{js,jsx,ts,tsx,css,md}": "pnpx prettier --write"
   },
   "dependencies": {
+    "@apollo/client": "^3.9.5",
+    "@graphql-codegen/cli": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.4",
+    "@graphql-codegen/typescript-react-apollo": "^4.3.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "@mdi/js": "^7.4.47",
     "@mdi/react": "^1.6.1",
+    "apollo-link-http": "^1.5.17",
+    "graphql": "^16.8.1",
+    "install": "^0.13.0",
     "lint-staged": "^15.2.2",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/graphql": "^14.5.0",
     "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/react": "^18.2.60",
+    "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^6.4.0",
-    "contentful": "^10.6.22",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.0",
     "eslint-config-prettier": "^9.1.0",

@@ -7,10 +7,10 @@ import { mdiClose, mdiMenu } from '@mdi/js'
 import { useClickOutside } from '@/hooks/useOnClickOutside'
 import Categories from '@/components/Categories/Categories'
 import Overlay from '@/components/common/overlay/Overlay'
-import { parsedCategoryType } from '@/types/categoriesType'
+import { CategoryType } from '@/types/categoriesType'
 
 type CategoriesProps = {
-  categories: parsedCategoryType[]
+  categories: CategoryType[]
 }
 export default function TopNav({ categories }: CategoriesProps) {
   const [showTopNav, setShowTopNav] = useState(false)

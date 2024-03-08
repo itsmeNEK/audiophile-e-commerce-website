@@ -4,11 +4,14 @@ import Style from './Header.module.scss'
 import Link from 'next/link'
 import TopNav from './SubComponents/TopNav/TopNav'
 import CartModal from './SubComponents/CartModal/CartModal'
-import { getContentfulNavigationCategories } from '@/services/getContentfulNavigationCategories'
 import NavLinks from '../NavLinks/NavLinks'
+import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 
 export default async function Header() {
-  const { navigation, categories } = await getContentfulNavigationCategories()
+  const navigation = await getCategoriesNavigation()
+  const categories = await getCategoriesNavigation({
+    isCategory: true,
+  })
   return (
     <header className={Style['header']}>
       <div className={`${Style['wrapper']} wrapper`}>
@@ -16,10 +19,9 @@ export default async function Header() {
         <Link href='/' className={Style['header__brand']}>
           <LogoSvgIcon aria-hidden />
         </Link>
-        <NavLinks
-          navigation={navigation}
-          className={Style['header__nav-links']}
-        />
+        <div className={Style['header__navigation']}>
+          <NavLinks navigation={navigation} />
+        </div>
         <CartModal />
       </div>
     </header>

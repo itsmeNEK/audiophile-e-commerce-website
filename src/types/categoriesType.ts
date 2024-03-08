@@ -1,17 +1,13 @@
-import { ParsedImage } from './common/image'
-
-export type ContentfulCategoryType = {
-  contentTypeId: string
-  fields: parsedCategoryType
-}
+import { ThumbnailType } from './common/image'
 
 export type NavigationType = {
   title: string
   link: string
 }
-export type parsedCategoryType = {
+
+export type CategoryType = {
   title: string
   link: string
   category: boolean
-  thumbnail: ParsedImage
+  thumbnail: ThumbnailType[]
 }

@@ -2,33 +2,34 @@ import Style from './Categories.module.scss'
 import Link from 'next/link'
 import Icon from '@mdi/react'
 import { mdiChevronRight } from '@mdi/js'
-import { parsedCategoryType } from '@/types/categoriesType'
+import { CategoryType } from '@/types/categoriesType'
 import Image from 'next/image'
+import { parseContentfulImage } from '@/helpers/parseContentfulImage'
 
 type CategoriesProps = {
-  categories: parsedCategoryType[]
+  categories: CategoryType[]
 }
 export default function Categories({ categories }: CategoriesProps) {
   return (
     <div className={Style['categories']}>
       <ul className={Style['categories__list']}>
         {categories?.map((item, index) => {
+          const { thumbnail, title, link } = item
+          const imageData = parseContentfulImage(thumbnail[0])
           return (
             <li key={index}>
               <Image
                 priority
                 className={Style['categories__image']}
-                src={item.thumbnail.imageUrl}
-                alt={item.thumbnail.altText}
+                src={imageData.imageUrl}
+                alt={imageData.altText}
                 width={200}
                 height={170}
+                quality={100}
               />
-              <h2 className={Style['categories__title']}>{item.title}</h2>
+              <h2 className={Style['categories__title']}>{title}</h2>
               <div className={Style['categories__action']}>
-                <Link
-                  href={item.link}
-                  className={Style['categories__action__link']}
-                >
+                <Link href={link} className={Style['categories__action__link']}>
                   <span>shop</span>
                   <Icon path={mdiChevronRight} size={1} />
                 </Link>

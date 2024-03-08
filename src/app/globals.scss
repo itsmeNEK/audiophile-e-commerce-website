@@ -3,16 +3,16 @@
 :root {
   --bg: #fafafa;
   --accent: #d87d4a;
-  --accent-light: #fbaf85;
+  --accent-light: #e18e62;
   --gray: #f1f1f1;
   --light-gray: #d3d3d3;
   --white: #fff;
   --black: #191919;
   --overlay: #00000086;
-  --text: rgba(0, 0, 0, 0.5);
-  --text-light: rgba(255, 255, 255, 0.5);
-  --divider: rgba(255, 255, 255, 0.1);
-  --placeholder: rgba(0, 0, 0, 0.4);
+  --text: #00000080;
+  --text-light: #ffffff80;
+  --divider: #ffffff1a;
+  --placeholder: #00000066;
   --input-border: #cfcfcf;
   --input-error: #cd2c2c;
 }
@@ -21,6 +21,7 @@ body {
   margin: 0;
   font-family: 'Manrope', sans-serif;
   background-color: var(--bg);
+  overflow: auto;
 
   @media screen and (min-width: 765px) {
   }

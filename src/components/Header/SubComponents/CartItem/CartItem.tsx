@@ -23,6 +23,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
           width={64}
           height={74}
           priority
+          quality={100}
         />
         <div className={Style['cart-item__product__details']}>
           <h4>{cartItem.title}</h4>
