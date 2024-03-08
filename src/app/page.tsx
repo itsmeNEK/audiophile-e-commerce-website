@@ -4,19 +4,19 @@ import getBanner from '@/services/getBanner'
 import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 
 export default async function Home() {
-  const hero_banner = await getBanner({
+  const heroBanner = await getBanner({
     page: 'homepage',
     bannerType: 'hero',
   })
-  const featured_banner = await getBanner({
+  const featuredBanner = await getBanner({
     page: 'homepage',
     bannerType: 'featured',
   })
-  const background_banner = await getBanner({
+  const backgroundBanner = await getBanner({
     page: 'homepage',
     bannerType: 'background',
   })
-  const card_banner = await getBanner({
+  const cardBanner = await getBanner({
     page: 'homepage',
     bannerType: 'card',
   })
@@ -24,13 +24,13 @@ export default async function Home() {
 
   return (
     <main>
-      {hero_banner && <Banner data={hero_banner} />}
+      {heroBanner && <Banner data={heroBanner} />}
       <div className='wrapper'>
         <Categories categories={categories} />
       </div>
-      {featured_banner && <Banner data={featured_banner} />}
-      {background_banner && <Banner data={background_banner} />}
-      {card_banner && <Banner data={card_banner} />}
+      {featuredBanner && <Banner data={featuredBanner} />}
+      {backgroundBanner && <Banner data={backgroundBanner} />}
+      {cardBanner && <Banner data={cardBanner} />}
     </main>
   )
 }

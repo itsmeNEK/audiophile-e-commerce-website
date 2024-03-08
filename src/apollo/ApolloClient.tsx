@@ -5,7 +5,6 @@ import {
   createHttpLink,
 } from '@apollo/client'
 import { setContext } from '@apollo/client/link/context'
-
 const {
   CONTENTFUL_SPACE_ID,
   CONTENTFUL_ACCESS_TOKEN,

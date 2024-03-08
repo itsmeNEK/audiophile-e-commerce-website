@@ -15,7 +15,7 @@ function Banner({ data }: BannerPros) {
   const { title, bannerType, thumbnail, tag, description, emphasis, product } =
     data.bannerContentCollection.items[0]
 
-  const ParsedThumbnail: ParsedImage = parseContentfulImage(thumbnail[0])
+  const parsedThumbnail: ParsedImage = parseContentfulImage(thumbnail[0])
   return (
     <section
       className={`${bannerType === 'hero' ? Style['hero-wrapper'] : Style['wrapper'] + ' wrapper'} `}
@@ -32,8 +32,8 @@ function Banner({ data }: BannerPros) {
             ${Style[`banner__image-container__image`]}
             ${Style[`banner-${bannerType}__image-container__image`]}
             `}
-            src={ParsedThumbnail.imageUrl}
-            alt={ParsedThumbnail.altText}
+            src={parsedThumbnail.imageUrl}
+            alt={parsedThumbnail.altText}
             width={600}
             height={300}
             quality={100}
