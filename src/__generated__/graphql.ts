@@ -24,7 +24,6 @@ export type Incremental<T> =
     }
 const defaultOptions = {} as const
 /** All built-in and custom scalars, mapped to their actual values */
-
 export type Scalars = {
   ID: { input: string; output: string }
   String: { input: string; output: string }
@@ -728,12 +727,14 @@ export type Products = Entry & {
   contentfulMetadata: ContentfulMetadata
   description?: Maybe<Scalars['String']['output']>
   emphasisInTheBox?: Maybe<Array<Maybe<Scalars['String']['output']>>>
-  fetures?: Maybe<Scalars['String']['output']>
+  features?: Maybe<Scalars['String']['output']>
   gallery?: Maybe<Scalars['JSON']['output']>
   inTheBox?: Maybe<Array<Maybe<Scalars['String']['output']>>>
   linkedFrom?: Maybe<ProductsLinkingCollections>
   price?: Maybe<Scalars['Float']['output']>
+  slug?: Maybe<Scalars['String']['output']>
   sys: Sys
+  tag?: Maybe<Scalars['String']['output']>
   thumbnail?: Maybe<Scalars['JSON']['output']>
   title?: Maybe<Scalars['String']['output']>
 }
@@ -755,7 +756,7 @@ export type ProductsEmphasisInTheBoxArgs = {
 }
 
 /** [See type definition](https://app.contentful.com/spaces/029u4b3vw08t/content_types/products) */
-export type ProductsFeturesArgs = {
+export type ProductsFeaturesArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -776,6 +777,16 @@ export type ProductsLinkedFromArgs = {
 
 /** [See type definition](https://app.contentful.com/spaces/029u4b3vw08t/content_types/products) */
 export type ProductsPriceArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/029u4b3vw08t/content_types/products) */
+export type ProductsSlugArgs = {
+  locale?: InputMaybe<Scalars['String']['input']>
+}
+
+/** [See type definition](https://app.contentful.com/spaces/029u4b3vw08t/content_types/products) */
+export type ProductsTagArgs = {
   locale?: InputMaybe<Scalars['String']['input']>
 }
 
@@ -819,13 +830,13 @@ export type ProductsFilter = {
     Array<InputMaybe<Scalars['String']['input']>>
   >
   emphasisInTheBox_exists?: InputMaybe<Scalars['Boolean']['input']>
-  fetures?: InputMaybe<Scalars['String']['input']>
-  fetures_contains?: InputMaybe<Scalars['String']['input']>
-  fetures_exists?: InputMaybe<Scalars['Boolean']['input']>
-  fetures_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
-  fetures_not?: InputMaybe<Scalars['String']['input']>
-  fetures_not_contains?: InputMaybe<Scalars['String']['input']>
-  fetures_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  features?: InputMaybe<Scalars['String']['input']>
+  features_contains?: InputMaybe<Scalars['String']['input']>
+  features_exists?: InputMaybe<Scalars['Boolean']['input']>
+  features_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  features_not?: InputMaybe<Scalars['String']['input']>
+  features_not_contains?: InputMaybe<Scalars['String']['input']>
+  features_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   gallery_exists?: InputMaybe<Scalars['Boolean']['input']>
   inTheBox_contains_all?: InputMaybe<
     Array<InputMaybe<Scalars['String']['input']>>
@@ -846,7 +857,21 @@ export type ProductsFilter = {
   price_lte?: InputMaybe<Scalars['Float']['input']>
   price_not?: InputMaybe<Scalars['Float']['input']>
   price_not_in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>
+  slug?: InputMaybe<Scalars['String']['input']>
+  slug_contains?: InputMaybe<Scalars['String']['input']>
+  slug_exists?: InputMaybe<Scalars['Boolean']['input']>
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  slug_not?: InputMaybe<Scalars['String']['input']>
+  slug_not_contains?: InputMaybe<Scalars['String']['input']>
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   sys?: InputMaybe<SysFilter>
+  tag?: InputMaybe<Scalars['String']['input']>
+  tag_contains?: InputMaybe<Scalars['String']['input']>
+  tag_exists?: InputMaybe<Scalars['Boolean']['input']>
+  tag_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
+  tag_not?: InputMaybe<Scalars['String']['input']>
+  tag_not_contains?: InputMaybe<Scalars['String']['input']>
+  tag_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>
   thumbnail_exists?: InputMaybe<Scalars['Boolean']['input']>
   title?: InputMaybe<Scalars['String']['input']>
   title_contains?: InputMaybe<Scalars['String']['input']>
@@ -872,6 +897,8 @@ export type ProductsLinkingCollectionsEntryCollectionArgs = {
 export enum ProductsOrder {
   PriceAsc = 'price_ASC',
   PriceDesc = 'price_DESC',
+  SlugAsc = 'slug_ASC',
+  SlugDesc = 'slug_DESC',
   SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
   SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -880,6 +907,8 @@ export enum ProductsOrder {
   SysPublishedAtDesc = 'sys_publishedAt_DESC',
   SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC',
+  TagAsc = 'tag_ASC',
+  TagDesc = 'tag_DESC',
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
 }
@@ -1055,49 +1084,35 @@ export type GetBannerQueryVariables = Exact<{
 }>
 
 export type GetBannerQuery = {
-  __typename: 'Query'
-  bannerContentCollection: {
-    __typename: 'BannerContentCollection'
+  __typename?: 'Query'
+  bannerContentCollection?: {
+    __typename?: 'BannerContentCollection'
     items: Array<{
-      __typename: 'BannerContent'
-      title: string
-      description: string | null
-      thumbnail: any | null
-      emphasis: string | null
-      bannerType: string
-      tag: string | null
-      page: string | null
+      __typename?: 'BannerContent'
+      title?: string | null
+      description?: string | null
+      thumbnail?: any | null
+      emphasis?: string | null
+      bannerType?: string | null
+      tag?: string | null
+      page?: string | null
       product?:
+        | { __typename?: 'BannerContent' }
+        | { __typename?: 'Categories' }
+        | { __typename?: 'FooterContent' }
         | {
-            __typename: 'BannerContent'
-            sys: {
-              __typename: 'Sys'
-              id: string
-            }
+            __typename?: 'Products'
+            slug?: string | null
+            category?:
+              | { __typename?: 'BannerContent' }
+              | { __typename?: 'Categories'; slug?: string | null }
+              | { __typename?: 'FooterContent' }
+              | { __typename?: 'Products' }
+              | null
           }
-        | {
-            __typename: 'Categories'
-            sys: {
-              __typename: 'Sys'
-              id: string
-            }
-          }
-        | {
-            __typename: 'FooterContent'
-            sys: {
-              __typename: 'Sys'
-              id: string
-            }
-          }
-        | {
-            __typename: 'Products'
-            sys: {
-              __typename: 'Sys'
-              id: string
-            }
-          }
-    }>
-  }
+        | null
+    } | null>
+  } | null
 }
 
 export type GetCategoriesQueryVariables = Exact<{
@@ -1132,6 +1147,65 @@ export type GetFooterQuery = {
   } | null
 }
 
+export type GetProductBySlugQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type GetProductBySlugQuery = {
+  __typename?: 'Query'
+  productsCollection?: {
+    __typename?: 'ProductsCollection'
+    items: Array<{
+      __typename?: 'Products'
+      title?: string | null
+      slug?: string | null
+      description?: string | null
+      features?: string | null
+      price?: number | null
+      thumbnail?: any | null
+      gallery?: any | null
+      inTheBox?: Array<string | null> | null
+      emphasisInTheBox?: Array<string | null> | null
+      tag?: string | null
+    } | null>
+  } | null
+}
+
+export type GetProductsByCategoryQueryVariables = Exact<{
+  slug: Scalars['String']['input']
+}>
+
+export type GetProductsByCategoryQuery = {
+  __typename?: 'Query'
+  categoriesCollection?: {
+    __typename?: 'CategoriesCollection'
+    items: Array<{
+      __typename?: 'Categories'
+      sys: { __typename?: 'Sys'; id: string }
+      linkedFrom?: {
+        __typename?: 'CategoriesLinkingCollections'
+        entryCollection?: {
+          __typename?: 'EntryCollection'
+          items: Array<
+            | { __typename?: 'BannerContent' }
+            | { __typename?: 'Categories' }
+            | { __typename?: 'FooterContent' }
+            | {
+                __typename?: 'Products'
+                title?: string | null
+                thumbnail?: any | null
+                description?: string | null
+                tag?: string | null
+                slug?: string | null
+              }
+            | null
+          >
+        } | null
+      } | null
+    } | null>
+  } | null
+}
+
 export const GetBannerDocument = {
   kind: 'Document',
   definitions: [
@@ -1142,10 +1216,7 @@ export const GetBannerDocument = {
       variableDefinitions: [
         {
           kind: 'VariableDefinition',
-          variable: {
-            kind: 'Variable',
-            name: { kind: 'Name', value: 'pageQ' },
-          },
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'page' } },
           type: {
             kind: 'NonNullType',
             type: {
@@ -1158,7 +1229,7 @@ export const GetBannerDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'bannerTypeQ' },
+            name: { kind: 'Name', value: 'bannerType' },
           },
           type: {
             kind: 'NonNullType',
@@ -1187,7 +1258,7 @@ export const GetBannerDocument = {
                       name: { kind: 'Name', value: 'page' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'pageQ' },
+                        name: { kind: 'Name', value: 'page' },
                       },
                     },
                     {
@@ -1195,7 +1266,7 @@ export const GetBannerDocument = {
                       name: { kind: 'Name', value: 'bannerType' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'bannerTypeQ' },
+                        name: { kind: 'Name', value: 'bannerType' },
                       },
                     },
                   ],
@@ -1229,6 +1300,7 @@ export const GetBannerDocument = {
                         name: { kind: 'Name', value: 'bannerType' },
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'tag' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'page' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'product' },
@@ -1236,14 +1308,48 @@ export const GetBannerDocument = {
                           kind: 'SelectionSet',
                           selections: [
                             {
-                              kind: 'Field',
-                              name: { kind: 'Name', value: 'sys' },
+                              kind: 'InlineFragment',
+                              typeCondition: {
+                                kind: 'NamedType',
+                                name: { kind: 'Name', value: 'Products' },
+                              },
                               selectionSet: {
                                 kind: 'SelectionSet',
                                 selections: [
                                   {
                                     kind: 'Field',
-                                    name: { kind: 'Name', value: 'id' },
+                                    name: { kind: 'Name', value: 'slug' },
+                                  },
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'category' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'InlineFragment',
+                                          typeCondition: {
+                                            kind: 'NamedType',
+                                            name: {
+                                              kind: 'Name',
+                                              value: 'Categories',
+                                            },
+                                          },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              {
+                                                kind: 'Field',
+                                                name: {
+                                                  kind: 'Name',
+                                                  value: 'slug',
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
                                   },
                                 ],
                               },
@@ -1251,7 +1357,6 @@ export const GetBannerDocument = {
                           ],
                         },
                       },
-                      { kind: 'Field', name: { kind: 'Name', value: 'page' } },
                     ],
                   },
                 },
@@ -1373,3 +1478,258 @@ export const GetFooterDocument = {
     },
   ],
 } as unknown as DocumentNode<GetFooterQuery, GetFooterQueryVariables>
+export const GetProductBySlugDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'getProductBySlug' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'productsCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'slug' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'slug' },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      { kind: 'Field', name: { kind: 'Name', value: 'title' } },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'description' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'features' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'price' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'thumbnail' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'gallery' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'inTheBox' },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'emphasisInTheBox' },
+                      },
+                      { kind: 'Field', name: { kind: 'Name', value: 'tag' } },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetProductBySlugQuery,
+  GetProductBySlugQueryVariables
+>
+export const GetProductsByCategoryDocument = {
+  kind: 'Document',
+  definitions: [
+    {
+      kind: 'OperationDefinition',
+      operation: 'query',
+      name: { kind: 'Name', value: 'getProductsByCategory' },
+      variableDefinitions: [
+        {
+          kind: 'VariableDefinition',
+          variable: { kind: 'Variable', name: { kind: 'Name', value: 'slug' } },
+          type: {
+            kind: 'NonNullType',
+            type: {
+              kind: 'NamedType',
+              name: { kind: 'Name', value: 'String' },
+            },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: 'SelectionSet',
+        selections: [
+          {
+            kind: 'Field',
+            name: { kind: 'Name', value: 'categoriesCollection' },
+            arguments: [
+              {
+                kind: 'Argument',
+                name: { kind: 'Name', value: 'where' },
+                value: {
+                  kind: 'ObjectValue',
+                  fields: [
+                    {
+                      kind: 'ObjectField',
+                      name: { kind: 'Name', value: 'slug' },
+                      value: {
+                        kind: 'Variable',
+                        name: { kind: 'Name', value: 'slug' },
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+            selectionSet: {
+              kind: 'SelectionSet',
+              selections: [
+                {
+                  kind: 'Field',
+                  name: { kind: 'Name', value: 'items' },
+                  selectionSet: {
+                    kind: 'SelectionSet',
+                    selections: [
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'sys' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'id' },
+                            },
+                          ],
+                        },
+                      },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'linkedFrom' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'Field',
+                              name: { kind: 'Name', value: 'entryCollection' },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'items' },
+                                    selectionSet: {
+                                      kind: 'SelectionSet',
+                                      selections: [
+                                        {
+                                          kind: 'InlineFragment',
+                                          typeCondition: {
+                                            kind: 'NamedType',
+                                            name: {
+                                              kind: 'Name',
+                                              value: 'Products',
+                                            },
+                                          },
+                                          selectionSet: {
+                                            kind: 'SelectionSet',
+                                            selections: [
+                                              {
+                                                kind: 'Field',
+                                                name: {
+                                                  kind: 'Name',
+                                                  value: 'title',
+                                                },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: {
+                                                  kind: 'Name',
+                                                  value: 'thumbnail',
+                                                },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: {
+                                                  kind: 'Name',
+                                                  value: 'description',
+                                                },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: {
+                                                  kind: 'Name',
+                                                  value: 'tag',
+                                                },
+                                              },
+                                              {
+                                                kind: 'Field',
+                                                name: {
+                                                  kind: 'Name',
+                                                  value: 'slug',
+                                                },
+                                              },
+                                            ],
+                                          },
+                                        },
+                                      ],
+                                    },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<
+  GetProductsByCategoryQuery,
+  GetProductsByCategoryQueryVariables
+>
+/** All built-in and custom scalars, mapped to their actual values */

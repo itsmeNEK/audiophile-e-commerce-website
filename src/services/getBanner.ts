@@ -11,12 +11,17 @@ const QUERY = gql`
         emphasis
         bannerType
         tag
+        page
         product {
-          sys {
-            id
+          ... on Products {
+            slug
+            category {
+              ... on Categories {
+                slug
+              }
+            }
           }
         }
-        page
       }
     }
   }

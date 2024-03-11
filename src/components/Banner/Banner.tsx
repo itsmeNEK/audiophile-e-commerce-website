@@ -11,11 +11,38 @@ type BannerPros = {
 }
 
 function Banner({ data }: BannerPros) {
-  if (data.bannerContentCollection.items.length === 0) return null
-  const { title, bannerType, thumbnail, tag, description, emphasis, product } =
-    data.bannerContentCollection.items[0]
+  const item = data?.bannerContentCollection?.items[0]
+
+  if (!item) {
+    return null
+  }
+  const { title, description, thumbnail, emphasis, bannerType, tag, product } =
+    item
 
   const parsedThumbnail: ParsedImage = parseContentfulImage(thumbnail[0])
+  function renderSeeProduct() {
+    if (
+      (product && product.__typename !== 'Products') ||
+      product?.category?.__typename !== 'Categories'
+    )
+      return
+
+    const productSlug = product.slug
+    const categorySlug = product?.category?.slug
+
+    return (
+      <Link
+        href={`${categorySlug}/${productSlug}`}
+        className={`
+        ${Style['banner__button']}
+        ${Style[`banner-${bannerType}__button`]}
+      `}
+      >
+        See Product
+      </Link>
+    )
+  }
+
   return (
     <section
       className={`${bannerType === 'hero' ? Style['hero-wrapper'] : Style['wrapper'] + ' wrapper'} `}
@@ -34,8 +61,8 @@ function Banner({ data }: BannerPros) {
             `}
             src={parsedThumbnail.imageUrl}
             alt={parsedThumbnail.altText}
-            width={600}
-            height={300}
+            width={parsedThumbnail.width}
+            height={parsedThumbnail.height}
             quality={100}
           />
         </div>
@@ -58,17 +85,7 @@ function Banner({ data }: BannerPros) {
             )}
             <h2>{parseTextWithSpan(title, emphasis)}</h2>
             {description && <p>{description}</p>}
-            {product && (
-              <Link
-                href={`/product/${product.sys.id}`}
-                className={`
-            ${Style[`banner__button`]}
-            ${Style[`banner-${bannerType}__button`]}
-            `}
-              >
-                See Product
-              </Link>
-            )}
+            {renderSeeProduct()}
           </div>
         </div>
       </div>

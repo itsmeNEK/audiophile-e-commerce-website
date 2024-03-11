@@ -1,8 +1,19 @@
-function parseTextWithSpan(title?: string | null, emphasis?: string | null) {
+function parseTextWithSpan(
+  title?: string | null,
+  emphasis?: string | string[] | null
+) {
   if (!title || !emphasis) return title
-  const parts = title.split(new RegExp(`(${emphasis})`, 'gi'))
+
+  const emphasisArray = Array.isArray(emphasis) ? emphasis : [emphasis]
+  const parts = title.split(new RegExp(`(${emphasisArray.join('|')})`, 'gi'))
+
   const parsedTitle = parts.map((part, index) => {
-    if (part.toLowerCase() === emphasis.toLowerCase()) {
+    const partLowerCase = part.toLowerCase()
+    const isMatched = emphasisArray.some(
+      (emphasisItem) => partLowerCase === emphasisItem.toLowerCase()
+    )
+
+    if (isMatched) {
       return <span key={index}>{part}</span>
     } else {
       return part
