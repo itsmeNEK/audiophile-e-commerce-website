@@ -8,11 +8,12 @@ function parseTextWithSpan(
   const parts = title.split(new RegExp(`(${emphasisArray.join('|')})`, 'gi'))
 
   const parsedTitle = parts.map((part, index) => {
-    if (
-      emphasisArray.some(
-        (emphasisItem) => part.toLowerCase() === emphasisItem.toLowerCase()
-      )
-    ) {
+    const partLowerCase = part.toLowerCase()
+    const isMatched = emphasisArray.some(
+      (emphasisItem) => partLowerCase === emphasisItem.toLowerCase()
+    )
+
+    if (isMatched) {
       return <span key={index}>{part}</span>
     } else {
       return part
