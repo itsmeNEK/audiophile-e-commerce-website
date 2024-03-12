@@ -5,7 +5,7 @@ import PrimaryButton from '@/components/common/buttons/PrimaryButton'
 import Icon from '@mdi/react'
 import { mdiClose, mdiMenu } from '@mdi/js'
 import { useClickOutside } from '@/hooks/useOnClickOutside'
-import Categories from '@/components/Categories/Categories'
+import Categories from '@/components/Shared/Categories/Categories'
 import Overlay from '@/components/common/overlay/Overlay'
 import { CategoryType } from '@/types/categoriesType'
 

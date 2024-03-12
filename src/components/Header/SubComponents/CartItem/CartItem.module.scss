@@ -10,13 +10,17 @@
     justify-content: flex-start;
     align-items: center;
     &__image {
+      width: 65px;
+      height: 65px;
       border-radius: 10px;
+      object-fit: cover;
     }
 
     &__details {
       margin-left: 1rem;
       h4 {
         margin: 0rem;
+        font-size: 1rem;
       }
       p {
         margin: 0;
@@ -29,10 +33,18 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 5px;
     button {
+      padding: 6px;
       display: flex;
       align-items: center;
+      &:hover {
+        background-color: var(--light-gray);
+        svg {
+          path {
+            fill: var(--accent) !important;
+          }
+        }
+      }
     }
   }
 }

@@ -24,9 +24,7 @@ export default function ProductBanner({
   bannerType,
   category,
 }: ProductBannerProps) {
-  const parsedThumbnail: ParsedImage | null = thumbnail
-    ? parseContentfulImage(thumbnail[0])
-    : null
+  const parsedThumbnail: ParsedImage = parseContentfulImage(thumbnail[0])
 
   return (
     <div className={`${Style['banner']} ${Style[`banner-${bannerType}`]}`}>

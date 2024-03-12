@@ -1,0 +1,37 @@
+.gallery {
+  &__image {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (min-width: 40rem) {
+    display: grid;
+    grid-template-areas:
+      'a c'
+      'b c';
+    grid-template-columns: 40% 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1rem;
+    &__image {
+      margin-bottom: 0;
+      width: 100%;
+      height: 250px;
+      border-radius: 10px;
+      object-fit: cover;
+
+      &:nth-child(1) {
+        grid-area: a;
+      }
+      &:nth-child(2) {
+        grid-area: b;
+      }
+      &:nth-child(3) {
+        grid-area: c;
+        height: 520px;
+      }
+    }
+  }
+}

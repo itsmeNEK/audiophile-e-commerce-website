@@ -3,7 +3,7 @@ import Style from './MainFooter.module.scss'
 import LogoSvgIcon from '@/components/common/svg/LogoSvgIcon'
 import Icon from '@mdi/react'
 import { mdiFacebook, mdiInstagram, mdiTwitter } from '@mdi/js'
-import NavLinks from '@/components/NavLinks/NavLinks'
+import NavLinks from '@/components/Shared/NavLinks/NavLinks'
 import getFooterContent from '@/services/getFooterContent'
 import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 export default async function MainFooter() {

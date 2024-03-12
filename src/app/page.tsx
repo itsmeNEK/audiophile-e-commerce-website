@@ -1,5 +1,5 @@
-import Banner from '@/components/Banner/Banner'
-import Categories from '@/components/Categories/Categories'
+import Banner from '@/components/Shared/Banner/Banner'
+import Categories from '@/components/Shared/Categories/Categories'
 import getBanner from '@/services/getBanner'
 import getCategoriesNavigation from '@/services/getCategoriesNavigation'
 

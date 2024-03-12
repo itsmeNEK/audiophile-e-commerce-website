@@ -45,6 +45,11 @@
           color: var(--accent);
         }
       }
+      &:hover {
+        span {
+          color: var(--accent);
+        }
+      }
     }
   }
 

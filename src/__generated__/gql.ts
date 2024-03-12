@@ -21,8 +21,10 @@ const documents = {
     types.GetFooterDocument,
   '\n  query getProductBySlug($slug: String!) {\n    productsCollection(where: { slug: $slug }) {\n      items {\n        title\n        slug\n        description\n        features\n        price\n        thumbnail\n        gallery\n        inTheBox\n        emphasisInTheBox\n        tag\n      }\n    }\n  }\n':
     types.GetProductBySlugDocument,
-  '\n  query getProductsByCategory($slug: String!) {\n    categoriesCollection(where: { slug: $slug }) {\n      items {\n        sys {\n          id\n        }\n        linkedFrom {\n          entryCollection {\n            items {\n              ... on Products {\n                title\n                thumbnail\n                description\n                tag\n                slug\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n':
+  '\n  query getProductsByCategory($slug: String!) {\n    categoriesCollection(where: { slug: $slug }) {\n      items {\n        sys {\n          id\n        }\n        linkedFrom {\n          entryCollection {\n            items {\n              ... on Products {\n                title\n                thumbnail\n                description\n                tag\n                slug\n                sys {\n                  publishedAt\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n':
     types.GetProductsByCategoryDocument,
+  '\n  query getRecommendProducts($slug: String!) {\n    productsCollection(where: { slug_not: $slug }, limit: 3) {\n      items {\n        title\n        slug\n        thumbnail\n        category {\n          ... on Categories {\n            slug\n          }\n        }\n      }\n    }\n  }\n':
+    types.GetRecommendProductsDocument,
 }
 
 /**
@@ -67,8 +69,14 @@ export function gql(
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(
-  source: '\n  query getProductsByCategory($slug: String!) {\n    categoriesCollection(where: { slug: $slug }) {\n      items {\n        sys {\n          id\n        }\n        linkedFrom {\n          entryCollection {\n            items {\n              ... on Products {\n                title\n                thumbnail\n                description\n                tag\n                slug\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n'
-): (typeof documents)['\n  query getProductsByCategory($slug: String!) {\n    categoriesCollection(where: { slug: $slug }) {\n      items {\n        sys {\n          id\n        }\n        linkedFrom {\n          entryCollection {\n            items {\n              ... on Products {\n                title\n                thumbnail\n                description\n                tag\n                slug\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n']
+  source: '\n  query getProductsByCategory($slug: String!) {\n    categoriesCollection(where: { slug: $slug }) {\n      items {\n        sys {\n          id\n        }\n        linkedFrom {\n          entryCollection {\n            items {\n              ... on Products {\n                title\n                thumbnail\n                description\n                tag\n                slug\n                sys {\n                  publishedAt\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query getProductsByCategory($slug: String!) {\n    categoriesCollection(where: { slug: $slug }) {\n      items {\n        sys {\n          id\n        }\n        linkedFrom {\n          entryCollection {\n            items {\n              ... on Products {\n                title\n                thumbnail\n                description\n                tag\n                slug\n                sys {\n                  publishedAt\n                }\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n']
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(
+  source: '\n  query getRecommendProducts($slug: String!) {\n    productsCollection(where: { slug_not: $slug }, limit: 3) {\n      items {\n        title\n        slug\n        thumbnail\n        category {\n          ... on Categories {\n            slug\n          }\n        }\n      }\n    }\n  }\n'
+): (typeof documents)['\n  query getRecommendProducts($slug: String!) {\n    productsCollection(where: { slug_not: $slug }, limit: 3) {\n      items {\n        title\n        slug\n        thumbnail\n        category {\n          ... on Categories {\n            slug\n          }\n        }\n      }\n    }\n  }\n']
 
 export function gql(source: string) {
   return (documents as any)[source] ?? {}
