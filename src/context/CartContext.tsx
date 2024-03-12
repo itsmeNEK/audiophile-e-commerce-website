@@ -20,9 +20,11 @@ type CartContextProviderProps = {
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
   const [showCart, setShowCart] = useState(false)
+  const [formValid, setFormValid] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
+  const [showTopNav, setShowTopNav] = useState(false)
   const [cartItems, setCartItems] = useState<CartItemType[]>([])
   const [totalCartPrice, setTotalCartPrice] = useState<number>(0)
-  const [isMounted, setIsMounted] = useState(false)
 
   const addItemToCart = useCallback(
     (product: ProductType, quantity: number) => {
@@ -103,6 +105,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       setTotalCartPrice,
       showCart,
       setShowCart,
+      formValid,
+      setFormValid,
+      showTopNav,
+      setShowTopNav,
     }),
     [
       cartItems,
@@ -115,6 +121,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       setTotalCartPrice,
       showCart,
       setShowCart,
+      formValid,
+      setFormValid,
+      showTopNav,
+      setShowTopNav,
     ]
   )
 

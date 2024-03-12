@@ -17,4 +17,8 @@ export type CartType = {
   handleRemoveAllItems: () => void
   showCart: boolean
   setShowCart: (value: boolean) => void
+  formValid: boolean
+  setFormValid: (value: boolean) => void
+  showTopNav: boolean
+  setShowTopNav: (value: boolean) => void
 }

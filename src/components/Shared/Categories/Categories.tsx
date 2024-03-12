@@ -1,15 +1,25 @@
+'use client'
 import Style from './Categories.module.scss'
-import Link from 'next/link'
 import Icon from '@mdi/react'
 import { mdiChevronRight } from '@mdi/js'
 import { CategoryType } from '@/types/categoriesType'
 import Image from 'next/image'
 import { parseContentfulImage } from '@/helpers/parseContentfulImage'
+import PrimaryButton from '@/components/common/buttons/PrimaryButton'
+import { useCartContext } from '@/context/CartContext'
+import { useRouter } from 'next/navigation'
 
 type CategoriesProps = {
   categories: CategoryType[]
 }
 export default function Categories({ categories }: CategoriesProps) {
+  const router = useRouter()
+  const { showTopNav, setShowTopNav } = useCartContext()
+
+  const handleClick = (link: string) => () => {
+    if (showTopNav) setShowTopNav(!showTopNav)
+    router.push(link)
+  }
   return (
     <div className={Style['categories']}>
       <ul className={Style['categories__list']}>
@@ -29,10 +39,14 @@ export default function Categories({ categories }: CategoriesProps) {
               />
               <h2 className={Style['categories__title']}>{title}</h2>
               <div className={Style['categories__action']}>
-                <Link href={link} className={Style['categories__action__link']}>
+                <PrimaryButton
+                  type='button'
+                  onClick={handleClick(link)}
+                  className={Style['categories__action__link']}
+                >
                   <span>shop</span>
                   <Icon path={mdiChevronRight} size={1} />
-                </Link>
+                </PrimaryButton>
               </div>
             </li>
           )

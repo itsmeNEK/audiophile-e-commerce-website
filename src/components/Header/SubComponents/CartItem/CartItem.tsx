@@ -6,12 +6,14 @@ import PrimaryButton from '@/components/common/buttons/PrimaryButton'
 import { parseContentfulImage } from '@/helpers/parseContentfulImage'
 import { CartItemType } from '@/types/cartType'
 import { useCartContext } from '@/context/CartContext'
+import { useRouter } from 'next/navigation'
 type CartItemProps = {
   cartItem: CartItemType
 }
 
 export default function CartItem({ cartItem }: CartItemProps) {
-  const { handleAddQuantityProduct, handleDeductQuantityProduct } =
+  const router = useRouter()
+  const { handleAddQuantityProduct, handleDeductQuantityProduct, setShowCart } =
     useCartContext()
   if (!cartItem) return null
   const { thumbnail, title, price } = cartItem.product
@@ -25,9 +27,23 @@ export default function CartItem({ cartItem }: CartItemProps) {
   const handleDeductQty = () => {
     handleDeductQuantityProduct(cartItem.product)
   }
+
+  function handleProductClick() {
+    const product = cartItem.product
+    if (product.category && product.category.__typename !== 'Categories') return
+
+    const categorySlug = product.category?.slug
+
+    router.push(`/${categorySlug}/${product.slug}`)
+    setShowCart(false)
+  }
+
   return (
     <div className={Style['cart-item']}>
-      <div className={Style['cart-item__product']}>
+      <PrimaryButton
+        onClick={handleProductClick}
+        className={Style['cart-item__product']}
+      >
         <Image
           className={Style['cart-item__product__image']}
           src={imageUrl}
@@ -40,7 +56,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
           <h4>{title}</h4>
           <p>$ {price && price.toLocaleString()}</p>
         </div>
-      </div>
+      </PrimaryButton>
       <div className={Style['cart-item__quantity']}>
         <PrimaryButton
           type='button'
