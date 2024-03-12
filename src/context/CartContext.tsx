@@ -19,6 +19,7 @@ type CartContextProviderProps = {
 }
 
 export function CartContextProvider({ children }: CartContextProviderProps) {
+  const [showCart, setShowCart] = useState(false)
   const [cartItems, setCartItems] = useState<CartItemType[]>([])
   const [totalCartPrice, setTotalCartPrice] = useState<number>(0)
   const [isMounted, setIsMounted] = useState(false)
@@ -38,6 +39,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
             : item
         )
       })
+      setShowCart((prevVal) => !prevVal)
     },
     []
   )
@@ -87,7 +89,7 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
     }
 
     localStorage.setItem('cartItems', JSON.stringify(cartItems))
-  }, [cartItems])
+  }, [cartItems, isMounted])
 
   const contextValue = useMemo(
     () => ({
@@ -99,6 +101,8 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       handleDeductQuantityProduct,
       setCartItems,
       setTotalCartPrice,
+      showCart,
+      setShowCart,
     }),
     [
       cartItems,
@@ -107,6 +111,10 @@ export function CartContextProvider({ children }: CartContextProviderProps) {
       handleRemoveAllItems,
       handleAddQuantityProduct,
       handleDeductQuantityProduct,
+      setCartItems,
+      setTotalCartPrice,
+      showCart,
+      setShowCart,
     ]
   )
 

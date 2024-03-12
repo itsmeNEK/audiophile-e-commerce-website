@@ -1,6 +1,6 @@
 'use client'
 import PrimaryButton from '@/components/common/buttons/PrimaryButton'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import Style from './CartModal.module.scss'
 import { useClickOutside } from '@/hooks/useOnClickOutside'
 import { mdiCartOutline } from '@mdi/js'
@@ -12,8 +12,7 @@ import { useCartContext } from '@/context/CartContext'
 import { CartItemType } from '@/types/cartType'
 
 export default function CartModal() {
-  const { cartItems } = useCartContext()
-  const [showCart, setShowCart] = useState(false)
+  const { cartItems, showCart, setShowCart } = useCartContext()
   const cartCardRef = useRef<HTMLDivElement>(null)
   const cartButtonRef = useRef<HTMLButtonElement | null>(null)
   const { handleRemoveAllItems, totalCartPrice } = useCartContext()

@@ -15,4 +15,6 @@ export type CartType = {
   handleAddQuantityProduct: (product: ProductType) => void
   handleDeductQuantityProduct: (product: ProductType) => void
   handleRemoveAllItems: () => void
+  showCart: boolean
+  setShowCart: (value: boolean) => void
 }
