@@ -8,10 +8,14 @@ import Summary from './Summary/Summary'
 import { useCartContext } from '@/context/CartContext'
 import ThankyouModal from './ThankyouModal/ThankyouModal'
 
+enum PaymentOption {
+  E_MONEY = 'e-Money',
+  CASH_ON_DELIVERY = 'Cash on Delivery',
+}
 export default function CheckoutForm() {
   const [showModal, setShowModal] = useState(false)
   const { setFormValid, handleRemoveAllItems, cartItems } = useCartContext()
-  const [choice, setChoice] = useState('e-Money')
+  const [choice, setChoice] = useState(PaymentOption.E_MONEY as string)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -32,7 +36,7 @@ export default function CheckoutForm() {
     }))
   }
   const paymentOptions = {
-    'e-Money': (
+    [PaymentOption.E_MONEY]: (
       <div className={Style['checkout-form__payment-details__e-money']}>
         <FormInput
           type='number'
@@ -56,7 +60,7 @@ export default function CheckoutForm() {
         />
       </div>
     ),
-    'Cash on Delivery': (
+    [PaymentOption.CASH_ON_DELIVERY]: (
       <div
         className={Style['checkout-form__payment-details__cash-on-delivery']}
       >
@@ -88,7 +92,7 @@ export default function CheckoutForm() {
   useEffect(() => {
     const allValid = Object.entries(formData).every(([key, value]) => {
       if (
-        choice !== 'e-Money' &&
+        choice !== PaymentOption.E_MONEY &&
         (key === 'e_money_number' || key === 'e_money_pin')
       ) {
         return true
@@ -186,12 +190,12 @@ export default function CheckoutForm() {
                 <FormRadio
                   choice={choice}
                   onChange={handleChoiceChange}
-                  label='e-Money'
+                  label={PaymentOption.E_MONEY}
                 />
                 <FormRadio
                   choice={choice}
                   onChange={handleChoiceChange}
-                  label='Cash on Delivery'
+                  label={PaymentOption.CASH_ON_DELIVERY}
                 />
               </div>
             </div>
