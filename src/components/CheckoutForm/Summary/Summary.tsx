@@ -4,6 +4,7 @@ import { CartItemType } from '@/types/cartType'
 import Image from 'next/image'
 import { parseContentfulImage } from '@/helpers/parseContentfulImage'
 import PrimaryButton from '../../common/buttons/PrimaryButton'
+import { getVatIncluded, getGrandTotal } from '@/utils/summaryComputation'
 
 type Computation = {
   label: string
@@ -13,18 +14,12 @@ type Computation = {
 const SHIPPING = 50
 export default function Summary() {
   const { cartItems, totalCartPrice, formValid } = useCartContext()
-  function getVatIncluded(total: number) {
-    return total * 0.2
-  }
-  function renderGrandTotal(total: number) {
-    const vat = getVatIncluded(total)
-    return total + vat + SHIPPING
-  }
+  const shippingFee = cartItems.length > 0 ? SHIPPING : 0
   const computations: Computation[] = [
     { label: 'total', value: totalCartPrice },
-    { label: 'shipping', value: 50 },
+    { label: 'shipping', value: shippingFee },
     { label: 'vat (included)', value: getVatIncluded(totalCartPrice) },
-    { label: 'Grand total', value: renderGrandTotal(totalCartPrice) },
+    { label: 'Grand total', value: getGrandTotal(totalCartPrice, shippingFee) },
   ]
   const renderComputations = (
     <div className={Style['computations']}>

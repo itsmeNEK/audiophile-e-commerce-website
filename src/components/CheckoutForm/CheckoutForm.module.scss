@@ -28,6 +28,10 @@
         text-align: center;
       }
     }
+    &__empty {
+      text-align: center;
+      color: var(--accent);
+    }
   }
   .summary-container {
     margin-top: 2rem;
