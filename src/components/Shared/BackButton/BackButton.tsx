@@ -11,12 +11,14 @@ export default function BackButton() {
     router.back()
   }
   return (
-    <PrimaryButton
-      className={Style['back-button']}
-      type='button'
-      onClick={handleBack}
-    >
-      Go Back
-    </PrimaryButton>
+    <div className={Style['container']}>
+      <PrimaryButton
+        className={Style['back-button']}
+        type='button'
+        onClick={handleBack}
+      >
+        Go Back
+      </PrimaryButton>
+    </div>
   )
 }

@@ -11,4 +11,5 @@ export type ProductType = {
   inTheBox?: Array<string | null> | null
   emphasisInTheBox?: Array<string | null> | null
   tag?: string | null
+  category?: { __typename?: string; slug?: string | null } | null
 }

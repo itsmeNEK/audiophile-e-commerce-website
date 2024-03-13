@@ -1167,6 +1167,12 @@ export type GetProductBySlugQuery = {
       inTheBox?: Array<string | null> | null
       emphasisInTheBox?: Array<string | null> | null
       tag?: string | null
+      category?:
+        | { __typename?: 'BannerContent' }
+        | { __typename?: 'Categories'; slug?: string | null }
+        | { __typename?: 'FooterContent' }
+        | { __typename?: 'Products' }
+        | null
     } | null>
   } | null
 }
@@ -1584,6 +1590,31 @@ export const GetProductBySlugDocument = {
                         name: { kind: 'Name', value: 'emphasisInTheBox' },
                       },
                       { kind: 'Field', name: { kind: 'Name', value: 'tag' } },
+                      {
+                        kind: 'Field',
+                        name: { kind: 'Name', value: 'category' },
+                        selectionSet: {
+                          kind: 'SelectionSet',
+                          selections: [
+                            {
+                              kind: 'InlineFragment',
+                              typeCondition: {
+                                kind: 'NamedType',
+                                name: { kind: 'Name', value: 'Categories' },
+                              },
+                              selectionSet: {
+                                kind: 'SelectionSet',
+                                selections: [
+                                  {
+                                    kind: 'Field',
+                                    name: { kind: 'Name', value: 'slug' },
+                                  },
+                                ],
+                              },
+                            },
+                          ],
+                        },
+                      },
                     ],
                   },
                 },

@@ -9,6 +9,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    text-decoration: none;
+    padding: 0.3rem;
+    border-radius: 10px;
+    background-color: transparent;
     &__image {
       width: 65px;
       height: 65px;
@@ -19,12 +23,17 @@
     &__details {
       margin-left: 1rem;
       h4 {
+        color: var(--black);
         margin: 0rem;
         font-size: 1rem;
       }
       p {
+        color: var(--text);
         margin: 0;
       }
+    }
+    &:hover {
+      background-color: var(--bg);
     }
   }
   &__quantity {

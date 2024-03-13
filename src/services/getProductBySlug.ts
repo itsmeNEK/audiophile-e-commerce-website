@@ -15,6 +15,11 @@ const QUERY_CAT = gql`
         inTheBox
         emphasisInTheBox
         tag
+        category {
+          ... on Categories {
+            slug
+          }
+        }
       }
     }
   }

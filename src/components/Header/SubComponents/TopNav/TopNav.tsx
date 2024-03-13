@@ -1,5 +1,5 @@
 'use client'
-import React, { useRef, useState } from 'react'
+import { useRef } from 'react'
 import Style from './TopNav.module.scss'
 import PrimaryButton from '@/components/common/buttons/PrimaryButton'
 import Icon from '@mdi/react'
@@ -8,17 +8,18 @@ import { useClickOutside } from '@/hooks/useOnClickOutside'
 import Categories from '@/components/Shared/Categories/Categories'
 import Overlay from '@/components/common/overlay/Overlay'
 import { CategoryType } from '@/types/categoriesType'
+import { useCartContext } from '@/context/CartContext'
 
 type CategoriesProps = {
   categories: CategoryType[]
 }
 export default function TopNav({ categories }: CategoriesProps) {
-  const [showTopNav, setShowTopNav] = useState(false)
+  const { showTopNav, setShowTopNav } = useCartContext()
   const closeButtonRef = useRef<HTMLButtonElement | null>(null)
   const topNavRef = useRef<HTMLDivElement>(null)
 
   const handleButtonClick = () => {
-    setShowTopNav((prevVal) => !prevVal)
+    setShowTopNav(!showTopNav)
   }
   const handleClickOutside = () => {
     setShowTopNav(false)

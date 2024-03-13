@@ -5,17 +5,18 @@ import Style from './CartModal.module.scss'
 import { useClickOutside } from '@/hooks/useOnClickOutside'
 import { mdiCartOutline } from '@mdi/js'
 import Icon from '@mdi/react'
-import Link from 'next/link'
 import CartItem from '../CartItem/CartItem'
 import Overlay from '@/components/common/overlay/Overlay'
 import { useCartContext } from '@/context/CartContext'
 import { CartItemType } from '@/types/cartType'
+import { useRouter } from 'next/navigation'
 
 export default function CartModal() {
   const { cartItems, showCart, setShowCart } = useCartContext()
   const cartCardRef = useRef<HTMLDivElement>(null)
   const cartButtonRef = useRef<HTMLButtonElement | null>(null)
   const { handleRemoveAllItems, totalCartPrice } = useCartContext()
+  const router = useRouter()
 
   const handleShowCart = () => {
     setShowCart(!showCart)
@@ -27,6 +28,10 @@ export default function CartModal() {
 
   const handleRemoveAll = () => {
     handleRemoveAllItems()
+  }
+  const handleCheckout = () => {
+    handleShowCart()
+    router.push('/checkout')
   }
 
   useClickOutside([cartCardRef, cartButtonRef], handleClickOutside)
@@ -57,9 +62,13 @@ export default function CartModal() {
         <span>Total</span>
         <p>$ {totalCartPrice.toLocaleString()}</p>
       </div>
-      <Link href='/checkout' className={Style['cart-footer']}>
+      <PrimaryButton
+        type='button'
+        onClick={handleCheckout}
+        className={Style['cart-footer']}
+      >
         Checkout
-      </Link>
+      </PrimaryButton>
     </div>
   )
   return (
