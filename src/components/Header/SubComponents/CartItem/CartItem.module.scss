@@ -22,6 +22,7 @@
 
     &__details {
       margin-left: 1rem;
+      text-align: start;
       h4 {
         color: var(--black);
         margin: 0rem;
@@ -37,7 +38,7 @@
     }
   }
   &__quantity {
-    width: 90px;
+    width: 80px;
     background-color: var(--gray);
     display: flex;
     justify-content: space-between;
