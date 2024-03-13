@@ -15,7 +15,7 @@ enum PaymentOption {
 export default function CheckoutForm() {
   const [showModal, setShowModal] = useState(false)
   const { setFormValid, handleRemoveAllItems, cartItems } = useCartContext()
-  const [choice, setChoice] = useState(PaymentOption.E_MONEY as string)
+  const [choice, setChoice] = useState(PaymentOption.E_MONEY)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -73,9 +73,8 @@ export default function CheckoutForm() {
       </div>
     ),
   }
-
   const handleChoiceChange = (value: string) => {
-    setChoice(value)
+    setChoice(value as PaymentOption)
   }
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
