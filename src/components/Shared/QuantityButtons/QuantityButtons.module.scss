@@ -1,0 +1,20 @@
+.quantity__add-minus-count {
+  background-color: var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  button {
+    background-color: transparent;
+    svg {
+      path {
+        fill: var(--black);
+        &:hover {
+          fill: var(--accent) !important;
+        }
+      }
+    }
+    &:hover {
+      background-color: var(--text-light);
+    }
+  }
+}

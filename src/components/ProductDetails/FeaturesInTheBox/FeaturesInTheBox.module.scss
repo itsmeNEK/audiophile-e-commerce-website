@@ -19,8 +19,9 @@
     list-style-type: none;
     li {
       padding-bottom: 10px;
-      span {
+      em {
         color: var(--accent);
+        font-style: normal;
         margin-right: 15px;
       }
     }

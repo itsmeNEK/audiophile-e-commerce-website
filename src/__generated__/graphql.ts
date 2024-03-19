@@ -1080,7 +1080,7 @@ export type _Node = {
 
 export type GetBannerQueryVariables = Exact<{
   page: Scalars['String']['input']
-  bannerType: Scalars['String']['input']
+  bannerTypes: Array<Scalars['String']['input']> | Scalars['String']['input']
 }>
 
 export type GetBannerQuery = {
@@ -1128,6 +1128,7 @@ export type GetCategoriesQuery = {
       title?: string | null
       link?: string | null
       category?: boolean | null
+      slug?: string | null
       thumbnail?: any | null
     } | null>
   } | null
@@ -1259,13 +1260,19 @@ export const GetBannerDocument = {
           kind: 'VariableDefinition',
           variable: {
             kind: 'Variable',
-            name: { kind: 'Name', value: 'bannerType' },
+            name: { kind: 'Name', value: 'bannerTypes' },
           },
           type: {
             kind: 'NonNullType',
             type: {
-              kind: 'NamedType',
-              name: { kind: 'Name', value: 'String' },
+              kind: 'ListType',
+              type: {
+                kind: 'NonNullType',
+                type: {
+                  kind: 'NamedType',
+                  name: { kind: 'Name', value: 'String' },
+                },
+              },
             },
           },
         },
@@ -1293,10 +1300,10 @@ export const GetBannerDocument = {
                     },
                     {
                       kind: 'ObjectField',
-                      name: { kind: 'Name', value: 'bannerType' },
+                      name: { kind: 'Name', value: 'bannerType_in' },
                       value: {
                         kind: 'Variable',
-                        name: { kind: 'Name', value: 'bannerType' },
+                        name: { kind: 'Name', value: 'bannerTypes' },
                       },
                     },
                   ],
@@ -1455,6 +1462,7 @@ export const GetCategoriesDocument = {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'category' },
                       },
+                      { kind: 'Field', name: { kind: 'Name', value: 'slug' } },
                       {
                         kind: 'Field',
                         name: { kind: 'Name', value: 'thumbnail' },

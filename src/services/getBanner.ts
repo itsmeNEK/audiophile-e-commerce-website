@@ -2,8 +2,11 @@ import { GetBannerQueryVariables } from '@/__generated__/graphql'
 import executeApolloQuery from '@/apollo/ApolloClient'
 import { gql } from '@apollo/client'
 const QUERY = gql`
-  query getBanner($page: String!, $bannerType: String!) {
-    bannerContentCollection(where: { page: $page, bannerType: $bannerType }) {
+  query getBanner($page: String!, $bannerTypes: [String!]!) {
+    bannerContentCollection(
+      where: { page: $page, bannerType_in: $bannerTypes }
+      order: sys_firstPublishedAt_ASC
+    ) {
       items {
         title
         description
@@ -28,12 +31,12 @@ const QUERY = gql`
 `
 export default async function getBanner({
   page,
-  bannerType,
+  bannerTypes,
 }: GetBannerQueryVariables) {
   const data = await executeApolloQuery({
     query: QUERY,
-    variables: { page: page, bannerType: bannerType },
+    variables: { page: page, bannerTypes: bannerTypes },
   })
 
-  return data
+  return data.bannerContentCollection.items
 }

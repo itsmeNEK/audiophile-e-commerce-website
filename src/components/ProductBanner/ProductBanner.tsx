@@ -1,9 +1,8 @@
-import React from 'react'
 import { ParsedImage, ThumbnailType } from '@/types/common/image'
 import Style from './ProductBanner.module.scss'
-import Image from 'next/image'
 import { parseContentfulImage } from '@/helpers/parseContentfulImage'
-import Link from 'next/link'
+import SeeProductButton from '../common/SeeProductButton/SeeProductButton'
+import ImageAndDetail from '../Shared/ImageAndDetail/ImageAndDetail'
 
 type ProductBannerProps = {
   title?: string | null
@@ -27,35 +26,24 @@ export default function ProductBanner({
   const parsedThumbnail: ParsedImage = parseContentfulImage(thumbnail[0])
 
   return (
-    <div className={`${Style['banner']} ${Style[`banner-${bannerType}`]}`}>
-      <div className={Style['banner__image-container']}>
-        {parsedThumbnail && (
-          <Image
-            priority
-            className={Style['banner__image-container__image']}
-            src={parsedThumbnail.imageUrl}
-            alt={parsedThumbnail.altText}
-            width={parsedThumbnail.width}
-            height={parsedThumbnail.height}
-            quality={100}
-          />
+    <div className={`${Style['banner']} ${Style[`banner--${bannerType}`]}`}>
+      <ImageAndDetail
+        image={parsedThumbnail}
+        tag={tag}
+        title={title}
+        description={description}
+      >
+        {category && slug && (
+          <SeeProductButton
+            aria-label='See Product Details'
+            productSlug={slug}
+            categorySlug={category}
+            className={Style['banner__button']}
+          >
+            See Product
+          </SeeProductButton>
         )}
-      </div>
-      <div className={Style['banner__content']}>
-        <div>
-          {tag && <span className={Style['banner__content__tag']}>{tag}</span>}
-          {title && <h2>{title}</h2>}
-          {description && <p>{description}</p>}
-          {category && slug && (
-            <Link
-              href={`${category}/${slug}`}
-              className={Style['banner__button']}
-            >
-              See Product
-            </Link>
-          )}
-        </div>
-      </div>
+      </ImageAndDetail>
     </div>
   )
 }

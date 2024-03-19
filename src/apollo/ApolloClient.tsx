@@ -37,12 +37,11 @@ const apolloClient = new ApolloClient({
 
 type QueryOptions = {
   query: DocumentNode
-  variables?: Record<string, string | boolean | number>
+  variables?: Record<string, string | string[] | boolean | number>
 }
 async function executeApolloQuery(queryOptions: QueryOptions) {
   try {
     const { data } = await apolloClient.query(queryOptions)
-
     return data
   } catch (error: unknown) {
     console.error('Error fetching data:', error)

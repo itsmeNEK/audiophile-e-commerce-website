@@ -9,6 +9,7 @@ const QUERY_CAT = gql`
         title
         link
         category
+        slug
         thumbnail
       }
     }

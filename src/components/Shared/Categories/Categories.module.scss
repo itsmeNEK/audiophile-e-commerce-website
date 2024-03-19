@@ -30,6 +30,7 @@
     align-items: center;
     justify-content: center;
     &__link {
+      background-color: transparent;
       color: var(--text);
       font-weight: 700;
       text-transform: uppercase;

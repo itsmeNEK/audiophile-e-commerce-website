@@ -1,4 +1,4 @@
-function parseTextWithSpan(
+function parseTextWithEm(
   title?: string | null,
   emphasis?: string | string[] | null
 ) {
@@ -14,7 +14,7 @@ function parseTextWithSpan(
     )
 
     if (isMatched) {
-      return <span key={index}>{part}</span>
+      return <em key={index}>{part}</em>
     } else {
       return part
     }
@@ -23,4 +23,4 @@ function parseTextWithSpan(
   return parsedTitle
 }
 
-export default parseTextWithSpan
+export default parseTextWithEm
