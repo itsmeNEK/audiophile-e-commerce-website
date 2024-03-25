@@ -2,113 +2,17 @@
   width: 100%;
   margin-bottom: 5rem;
   text-align: center;
-
-  &__image-container {
-    width: 100%;
-    &__image {
-      width: 100%;
-      object-fit: cover;
-      border-radius: 10px;
-      height: 350px;
-    }
-  }
-
-  &__content {
-    width: 100%;
-    margin-top: 2rem;
-    h2 {
-      font-size: 1.5rem;
-      text-transform: uppercase;
-      text-align: center;
-      margin-bottom: 1rem;
-      margin-top: 1.5rem;
-      font-weight: 500;
-      letter-spacing: 0.5rem;
-
-      span {
-        color: var(--accent);
-      }
-    }
-    span {
-      color: var(--accent);
-      letter-spacing: 0.5rem;
-      text-transform: uppercase;
-    }
-    p {
-      color: var(--text);
-      font-size: 1rem;
-      font-weight: 200;
-      line-height: 30px;
-      margin-bottom: 1.5rem;
-      text-align: center;
-    }
-  }
-
-  .banner__button {
-    text-decoration: none;
-    background-color: var(--accent);
-    color: var(--white);
-    padding: 15px 35px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0px 0px 5px -4px var(--black);
-    font-size: 0.9rem;
-    font-weight: 500;
-
-    &:hover {
-      background-color: var(--accent-light);
-    }
-  }
-}
-@media screen and (min-width: 40rem) {
-  .banner {
+  @media screen and (min-width: 40rem) {
     margin-bottom: 7rem;
-    &__image-container {
-      &__image {
-        height: 450px;
-      }
-    }
-    &__content {
-      h2 {
-        width: 50%;
-        margin: 2rem auto;
-      }
-      p {
-        width: 80%;
-        margin: 2rem auto;
-      }
-    }
   }
-}
-@media screen and (min-width: 62rem) {
-  .banner {
+  @media screen and (min-width: 62rem) {
     display: flex;
     justify-content: space-between;
     align-items: center;
     text-align: unset;
 
-    &__image-container {
-      max-width: 45%;
-      &__image {
-        height: 550px;
-      }
+    &.banner--left {
+      flex-direction: row-reverse;
     }
-    &__content {
-      width: 50%;
-      h2 {
-        font-size: 2.5rem;
-        text-align: start;
-        width: 80%;
-        margin: 0;
-      }
-      p {
-        text-align: start;
-        width: 80%;
-        margin: 2rem 0;
-      }
-    }
-  }
-  .banner-left {
-    flex-direction: row-reverse;
   }
 }

@@ -13,12 +13,12 @@ export default async function MainFooter() {
   return (
     <footer className={Style['footer']}>
       <div className={`${Style['wrapper']} wrapper`}>
-        <div className={Style['footer__navigation']}>
+        <nav className={Style['footer__navigation']}>
           <Link href='/' className={Style['footer__navigation__brand']}>
             <LogoSvgIcon aria-hidden />
           </Link>
           <NavLinks navigation={navigation} />
-        </div>
+        </nav>
         <div className={Style['footer__info']}>
           <p className={Style['footer__info__details']}>
             {footerContent?.about}

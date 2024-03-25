@@ -39,22 +39,8 @@
   }
   &__quantity {
     width: 80px;
-    background-color: var(--gray);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     button {
       padding: 6px;
-      display: flex;
-      align-items: center;
-      &:hover {
-        background-color: var(--light-gray);
-        svg {
-          path {
-            fill: var(--accent) !important;
-          }
-        }
-      }
     }
   }
 }

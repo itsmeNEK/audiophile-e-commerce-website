@@ -16,7 +16,11 @@ export default async function Header() {
     <header className={Style['header']}>
       <div className={`${Style['wrapper']} wrapper`}>
         <TopNav categories={categories} />
-        <Link href='/' className={Style['header__brand']}>
+        <Link
+          href='/'
+          className={Style['header__brand']}
+          aria-label='Go to Homepage'
+        >
           <LogoSvgIcon aria-hidden />
         </Link>
         <div className={Style['header__navigation']}>

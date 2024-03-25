@@ -1,48 +1,30 @@
 import Image from 'next/image'
 import Style from './Banner.module.scss'
-import parseTextWithSpan from '@/helpers/parseTextWithSpan'
-import Link from 'next/link'
+import parseTextWithEm from '@/helpers/parseTextWithEm'
 import { parseContentfulImage } from '@/helpers/parseContentfulImage'
 import { ParsedImage } from '@/types/common/image'
-import { GetBannerQuery } from '@/__generated__/graphql'
+import SeeProductButton from '@/components/common/SeeProductButton/SeeProductButton'
+import { BannerType } from '@/types/bannerType'
 
 type BannerPros = {
-  data: GetBannerQuery
+  data: BannerType
 }
 
 function Banner({ data }: BannerPros) {
-  const item = data?.bannerContentCollection?.items[0]
-
-  if (!item) {
-    return null
-  }
   const { title, description, thumbnail, emphasis, bannerType, tag, product } =
-    item
-
+    data
   const parsedThumbnail: ParsedImage = parseContentfulImage(thumbnail[0])
-  function renderSeeProduct() {
-    if (
-      (product && product.__typename !== 'Products') ||
-      product?.category?.__typename !== 'Categories'
-    )
-      return
+
+  const productLink = isProductExists()
+
+  function isProductExists() {
+    if (product?.category?.__typename !== 'Categories') return null
 
     const productSlug = product.slug
     const categorySlug = product?.category?.slug
 
-    return (
-      <Link
-        href={`${categorySlug}/${productSlug}`}
-        className={`
-        ${Style['banner__button']}
-        ${Style[`banner-${bannerType}__button`]}
-      `}
-      >
-        See Product
-      </Link>
-    )
+    return { productSlug: productSlug, categorySlug: categorySlug }
   }
-
   return (
     <section
       className={`${bannerType === 'hero' ? Style['hero-wrapper'] : Style['wrapper'] + ' wrapper'} `}
@@ -83,9 +65,21 @@ function Banner({ data }: BannerPros) {
                 {tag}
               </span>
             )}
-            <h2>{parseTextWithSpan(title, emphasis)}</h2>
+            <h2>{parseTextWithEm(title, emphasis)}</h2>
             {description && <p>{description}</p>}
-            {renderSeeProduct()}
+            {productLink && (
+              <SeeProductButton
+                aria-label='See Product Details'
+                productSlug={productLink.productSlug}
+                categorySlug={productLink.categorySlug}
+                className={`
+        ${Style['banner__button']}
+        ${Style[`banner-${bannerType}__button`]}
+      `}
+              >
+                See Product
+              </SeeProductButton>
+            )}
           </div>
         </div>
       </div>

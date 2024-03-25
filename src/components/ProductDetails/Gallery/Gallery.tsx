@@ -9,7 +9,7 @@ type GalleryProps = {
 export default function Gallery({ galleryImages }: GalleryProps) {
   if (!galleryImages) return null
   return (
-    <div className={Style['gallery']}>
+    <section className={Style['gallery']}>
       {galleryImages.map((item, index) => (
         <Image
           key={index}
@@ -21,6 +21,6 @@ export default function Gallery({ galleryImages }: GalleryProps) {
           quality={100}
         />
       ))}
-    </div>
+    </section>
   )
 }

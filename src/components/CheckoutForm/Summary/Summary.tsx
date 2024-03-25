@@ -35,7 +35,7 @@ export default function Summary() {
   )
 
   return (
-    <div className={Style['summary']}>
+    <article className={Style['summary']}>
       <h2>Summary</h2>
       <div className={Style['cart-items']}>
         {cartItems.map((item: CartItemType, index: number) => {
@@ -76,6 +76,6 @@ export default function Summary() {
       >
         Continue & pay
       </PrimaryButton>
-    </div>
+    </article>
   )
 }

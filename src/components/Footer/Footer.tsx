@@ -1,18 +1,15 @@
 import MainFooter from './MainFooter/MainFooter'
 import Banner from '../Shared/Banner/Banner'
 import getBanner from '@/services/getBanner'
-type FooterProps = {
-  promotion?: boolean
-}
 
-export default async function Footer({ promotion }: FooterProps) {
+export default async function Footer() {
   const promotionBanner = await getBanner({
     page: 'promotion',
-    bannerType: 'promotion',
+    bannerTypes: ['promotion'],
   })
   return (
     <>
-      {promotionBanner && !promotion && <Banner data={promotionBanner} />}
+      {promotionBanner.length > 0 && <Banner data={promotionBanner[0]} />}
       <MainFooter />
     </>
   )

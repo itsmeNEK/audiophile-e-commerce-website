@@ -21,10 +21,10 @@ export default async function page({ params }: CategoryParamsType) {
   const categories = await getCategoriesNavigation({ isCategory: true })
   return (
     <main>
-      <div className={Style['category-banner']}>
+      <section className={Style['category-banner']}>
         <h1>{category}</h1>
-      </div>
-      <div className='wrapper'>
+      </section>
+      <section className='wrapper'>
         <div className={Style['products']}>
           {products?.map((item, index) => {
             if (!item) return null
@@ -45,7 +45,7 @@ export default async function page({ params }: CategoryParamsType) {
           })}
         </div>
         {categories && <Categories categories={categories} />}
-      </div>
+      </section>
     </main>
   )
 }

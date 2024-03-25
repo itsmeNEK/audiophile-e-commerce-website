@@ -16,42 +16,44 @@ export default function Categories({ categories }: CategoriesProps) {
   const router = useRouter()
   const { showTopNav, setShowTopNav } = useCartContext()
 
-  const handleClick = (link: string) => () => {
+  const handleClick = (slug: string) => () => {
     if (showTopNav) setShowTopNav(!showTopNav)
-    router.push(link)
+    router.push(`/${slug}`)
   }
   return (
-    <div className={Style['categories']}>
-      <ul className={Style['categories__list']}>
-        {categories?.map((item, index) => {
-          const { thumbnail, title, link } = item
-          const parsedThumbnail = parseContentfulImage(thumbnail[0])
-          return (
-            <li key={index}>
-              <Image
-                priority
-                className={Style['categories__image']}
-                src={parsedThumbnail.imageUrl}
-                alt={parsedThumbnail.altText}
-                width={parsedThumbnail.width}
-                height={parsedThumbnail.height}
-                quality={100}
-              />
-              <h2 className={Style['categories__title']}>{title}</h2>
-              <div className={Style['categories__action']}>
-                <PrimaryButton
-                  type='button'
-                  onClick={handleClick(link)}
-                  className={Style['categories__action__link']}
-                >
-                  <span>shop</span>
-                  <Icon path={mdiChevronRight} size={1} />
-                </PrimaryButton>
-              </div>
-            </li>
-          )
-        })}
-      </ul>
+    <div className='wrapper'>
+      <div className={Style['categories']}>
+        <ul className={Style['categories__list']}>
+          {categories?.map((item, index) => {
+            const { thumbnail, title, slug } = item
+            const parsedThumbnail = parseContentfulImage(thumbnail[0])
+            return (
+              <li key={index}>
+                <Image
+                  priority
+                  className={Style['categories__image']}
+                  src={parsedThumbnail.imageUrl}
+                  alt={parsedThumbnail.altText}
+                  width={parsedThumbnail.width}
+                  height={parsedThumbnail.height}
+                  quality={100}
+                />
+                <h2 className={Style['categories__title']}>{title}</h2>
+                <div className={Style['categories__action']}>
+                  <PrimaryButton
+                    type='button'
+                    onClick={handleClick(slug)}
+                    className={Style['categories__action__link']}
+                  >
+                    <span>shop</span>
+                    <Icon path={mdiChevronRight} size={1} />
+                  </PrimaryButton>
+                </div>
+              </li>
+            )
+          })}
+        </ul>
+      </div>
     </div>
   )
 }

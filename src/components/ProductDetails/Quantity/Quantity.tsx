@@ -1,11 +1,10 @@
 'use client'
 import PrimaryButton from '@/components/common/buttons/PrimaryButton'
 import Style from './Quantity.module.scss'
-import Icon from '@mdi/react'
-import { mdiMinus, mdiPlus } from '@mdi/js'
 import { useCartContext } from '@/context/CartContext'
 import { ThumbnailType } from '@/types/common/image'
 import { useState } from 'react'
+import QuantityButtons from '@/components/Shared/QuantityButtons/QuantityButtons'
 
 type QuantityProps = {
   product: {
@@ -33,27 +32,12 @@ export default function Quantity({ product }: QuantityProps) {
 
   return (
     <div className={Style['quantity']}>
-      <div className={Style['quantity__add-minus-count']}>
-        <PrimaryButton
-          type='button'
-          aria-label='Minus Button'
-          className={Style['quantity__add-minus-count__minus']}
-          onClick={handleMinus}
-        >
-          <Icon path={mdiMinus} aria-hidden size={0.7}></Icon>
-        </PrimaryButton>
-        <span className={Style['quantity__add-minus-count__count']}>
-          {quantity}
-        </span>
-        <PrimaryButton
-          type='button'
-          aria-label='Plus Button'
-          className={Style['quantity__add-minus-count__plus']}
-          onClick={handleAdd}
-        >
-          <Icon path={mdiPlus} aria-hidden size={0.7}></Icon>
-        </PrimaryButton>
-      </div>
+      <QuantityButtons
+        quantity={quantity}
+        className={Style['quantity__add-minus-count']}
+        onMinusClick={handleMinus}
+        onPlusClick={handleAdd}
+      />
       <PrimaryButton
         type='button'
         className={Style['quantity__add-button']}
