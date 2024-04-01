@@ -12,7 +12,13 @@ import { CartItemType } from '@/types/cartType'
 import { useRouter } from 'next/navigation'
 
 export default function CartModal() {
-  const { cartItems, showCart, setShowCart } = useCartContext()
+  const {
+    cartItems,
+    showCart,
+    setShowCart,
+    handleAddQuantityProduct,
+    handleDeductQuantityProduct,
+  } = useCartContext()
   const cartCardRef = useRef<HTMLDivElement>(null)
   const cartButtonRef = useRef<HTMLButtonElement | null>(null)
   const { handleRemoveAllItems, totalCartPrice } = useCartContext()
@@ -32,6 +38,21 @@ export default function CartModal() {
   const handleCheckout = () => {
     handleShowCart()
     router.push('/checkout')
+  }
+  const handleAddQty = (cartItem: CartItemType) => () => {
+    handleAddQuantityProduct(cartItem.product)
+  }
+  const handleDeductQty = (cartItem: CartItemType) => () => {
+    handleDeductQuantityProduct(cartItem.product)
+  }
+
+  const handleProductClick = (cartItem: CartItemType) => () => {
+    const product = cartItem.product
+
+    const categorySlug = product.category?.slug
+
+    router.push(`/${categorySlug}/${product.slug}`)
+    setShowCart(false)
   }
 
   useClickOutside([cartCardRef, cartButtonRef], handleClickOutside)
@@ -56,7 +77,13 @@ export default function CartModal() {
         </PrimaryButton>
       </div>
       {cartItems?.map((cartItem: CartItemType, index: number) => (
-        <CartItem key={index} cartItem={cartItem} />
+        <CartItem
+          onAddQty={handleAddQty(cartItem)}
+          onDeductQty={handleDeductQty(cartItem)}
+          onProductClick={handleProductClick(cartItem)}
+          key={index}
+          cartItem={cartItem}
+        />
       ))}
       <div className={Style['cart-total']}>
         <span>Total</span>

@@ -1,26 +1,13 @@
 .quantity {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   gap: 1rem;
 
   &__add-minus-count {
-    background-color: var(--gray);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
     width: 120px;
     button {
-      background-color: transparent;
       padding: 15px;
-      &:hover {
-        background-color: var(--light-gray);
-        svg {
-          path {
-            fill: var(--accent) !important;
-          }
-        }
-      }
     }
   }
   &__add-button {
@@ -35,5 +22,9 @@
     &:hover {
       background-color: var(--accent-light);
     }
+  }
+
+  @media screen and (min-width: 62rem) {
+    justify-content: flex-start;
   }
 }

@@ -1,8 +1,8 @@
+import SeeProductButton from '@/components/common/SeeProductButton/SeeProductButton'
 import Style from './ProductCard.module.scss'
 import { parseContentfulImage } from '@/helpers/parseContentfulImage'
 import { ThumbnailType } from '@/types/common/image'
 import Image from 'next/image'
-import Link from 'next/link'
 
 type ProductCardProps = {
   data: {
@@ -31,16 +31,13 @@ export default function ProductCard({ data }: ProductCardProps) {
     const categorySlug = category?.slug
 
     return (
-      <Link
-        href={`${categorySlug}/${slug}`}
-        className={Style['product-card__button']}
-      >
+      <SeeProductButton categorySlug={categorySlug} productSlug={slug}>
         See Product
-      </Link>
+      </SeeProductButton>
     )
   }
   return (
-    <div className={Style['product-card']}>
+    <article className={Style['product-card']}>
       <Image
         className={Style['product-card__image']}
         src={imageUrl}
@@ -52,6 +49,6 @@ export default function ProductCard({ data }: ProductCardProps) {
       <h3 className={Style['product-card__title']}>{title}</h3>
 
       {renderSeeProduct()}
-    </div>
+    </article>
   )
 }

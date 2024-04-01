@@ -75,6 +75,7 @@
   }
   &:disabled {
     background-color: var(--gray);
+    color: var(--text-light);
     &:hover {
       background-color: none;
       cursor: unset;
