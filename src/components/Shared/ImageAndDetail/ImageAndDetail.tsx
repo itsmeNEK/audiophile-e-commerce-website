@@ -18,25 +18,21 @@ export default function ImageAndDetail({
   title,
   description,
 }: ImageAndDetailProps) {
-  const renderImage = () => {
-    if (!image) return null
-    const { imageUrl, altText, width, height } = image
-    return (
-      <>
-        <Image
-          priority
-          src={imageUrl}
-          alt={altText}
-          width={width}
-          height={height}
-          quality={100}
-        />
-      </>
-    )
-  }
   return (
     <>
-      <div className={Style['image-container']}>{renderImage()}</div>
+      {image && (
+        <div className={Style['image-container']}>
+          <Image
+            priority
+            src={image.imageUrl}
+            alt={image.altText}
+            width={image.width}
+            height={image.height}
+            quality={100}
+          />
+        </div>
+      )}
+
       <div className={Style['content']}>
         <div>
           {tag && <span>{tag}</span>}

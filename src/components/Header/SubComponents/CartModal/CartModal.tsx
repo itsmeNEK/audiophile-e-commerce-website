@@ -48,7 +48,6 @@ export default function CartModal() {
 
   const handleProductClick = (cartItem: CartItemType) => () => {
     const product = cartItem.product
-    if (product.category && product.category.__typename !== 'Categories') return
 
     const categorySlug = product.category?.slug
 
